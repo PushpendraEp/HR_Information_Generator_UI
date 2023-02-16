@@ -6,7 +6,7 @@
     /* Full height */
     height: 100%;
   
-    /* Center and scale the image nicely */
+    /* Center and scale the imagee nicely */ 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,4 +19,8 @@
 .login{
   background-color: #ffffff;
   padding: 20px 30px;
+}
+.error{
+  border: 1px solid red;
+
 }
