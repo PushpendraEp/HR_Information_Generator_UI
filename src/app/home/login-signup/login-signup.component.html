@@ -1,22 +1,29 @@
 
-<!-- @ Ravi ( 16/02/23 ) simple login page here -->
+<!-- @ kirti ( 16/02/23 ) simple login template driven from with validatyions here -->
 <section class="joinnow">
     <div class="login col-lg-4 m-auto shadow-lg">
-        <form >
+        <form #loginForm="ngForm" (ngSubmit)="userlogin(loginForm); loginForm.resetForm()" >
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" placeholder="Enter Email Here"   required #name="ngModel" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"  ngModel class="form-control" name="Email" id="exampleInputEmail1" aria-describedby="emailHelp" [ngClass]="{error: name.errors && name.touched }">
+              <span *ngIf="name.invalid && name.touched " style="color: red; "  >Email is required</span>
               <div id="emailHelp" class="form-text"></div>
             </div>
+
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <label for="exampleInputPassword1" class="form-label" >Password</label>
+              <input type="password" placeholder="Enter Password Here"  #password="ngModel" minlength="4"  required name="password" class="form-control" id="exampleInputPassword1"   ngModel [ngClass]="{error: password.errors && password.touched }">
+              <span *ngIf="password.invalid && password.touched" style="color: red;">please enter valid Password</span>
             </div>
+
+
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <input type="checkbox"class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-            <button type="submit" class="btn btn-primary col-lg-12">Log In</button>
+
+            <button type="submit" class="btn btn-primary col-lg-12" [disabled]="loginForm.invalid"   >Log In</button>
+          
           </form>
     </div>
 </section>

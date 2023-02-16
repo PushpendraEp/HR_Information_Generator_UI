@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NgForm} from '@angular/forms'
 
 @Component({
   selector: 'app-login-signup',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
+ 
+  userlogin(item:NgForm){
+    
+    console.log(item);
+    // item.reset()
+   
+   
+  }
+ 
+  
 
 }
