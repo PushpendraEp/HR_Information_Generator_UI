@@ -11,7 +11,7 @@ export class LoginSignupComponent {
   userlogin(item:NgForm){
     
     console.log(item);
-    // item.reset()
+    // item.reset().
    
    
   }
