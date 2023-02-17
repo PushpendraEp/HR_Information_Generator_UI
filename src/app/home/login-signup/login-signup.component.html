@@ -1,32 +1,30 @@
 
 <!-- @ kirti ( 16/02/23 ) simple login template driven from with validatyions here --->
+<!-- @ Ravi ( 17/02/23 ) Created login form template -->
 <section class="joinnow">
-    <div class="login col-lg-4 m-auto shadow-lg">
-        <form #loginForm="ngForm" (ngSubmit)="userlogin(loginForm); loginForm.resetForm()" >
+    <section class="login col-lg-4 m-auto shadow-lg rounded">
+
+        <div class="mb-2"><h3 class="text-center text-primary mt-2 mb-4">Login</h3></div>
+        <form class="container rounded" #loginForm="ngForm" (ngSubmit)="userlogin(loginForm)">
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" placeholder="Enter Email Here"   required #name="ngModel" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"  ngModel class="form-control" name="Email" id="exampleInputEmail1" aria-describedby="emailHelp" [ngClass]="{error: name.errors && name.touched }">
-              <span *ngIf="name.invalid && name.touched " style="color: red; "  >Email is required</span>
-              <div id="emailHelp" class="form-text"></div>
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" required #email="ngModel" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                    aria-describedby="emailHelp">
+                <span *ngIf="email.invalid && email.touched " class="text-danger">Email is required</span>
+                <div id="emailHelp" class="form-text"></div>
             </div>
-
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label" >Password</label>
-              <input type="password" placeholder="Enter Password Here"  #password="ngModel" minlength="4"  required name="password" class="form-control" id="exampleInputPassword1"   ngModel [ngClass]="{error: password.errors && password.touched }">
-              <span *ngIf="password.invalid && password.touched" style="color: red;">please enter valid Password</span>
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" #password="ngModel" minlength="4" required name="password"
+                    id="exampleInputPassword1">
+                <span *ngIf="password.invalid && password.touched" class="text-danger">please enter valid Password</span>
             </div>
-
-
             <div class="mb-3 form-check">
-              <input type="checkbox"class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <input type="checkbox" class="form-check-input"
+                    id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-
-            <button type="submit" class="btn btn-primary col-lg-12" [disabled]="loginForm.invalid"   >Log In</button>
-          
-          </form>
-    </div>
+            <button type="submit" class="btn btn-primary col-lg-12" [disabled]="loginForm.invalid">Log In</button>
+        </form>
+    </section>
 </section>
-
-
-

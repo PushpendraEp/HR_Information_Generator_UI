@@ -1,26 +1,23 @@
-.joinnow{
-  
-    /* The image used */
-    background-image: url('https://images7.alphacoders.com/411/thumb-1920-411820.jpg');
-  
-    /* Full height */
-    height: 100%;
-  
-    /* Center and scale the imagee nicely */ 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  
+.joinnow {
+  /* The image used */
+  background-color: rgb(56, 56, 203);
 
+  /* Full height */
+  height: 100vh;
 
- 
-  padding: 230px 100px  ;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 230px 100px;
 }
-.login{
+.login {
   background-color: #ffffff;
   padding: 20px 30px;
 }
-.error{
-  border: 1px solid red;
 
+@media screen and (max-width: 600px) {
+  .joinnow {
+    padding: 140px 30px;
+  }
 }
