@@ -10,12 +10,9 @@ import {NgForm} from '@angular/forms'
 export class LoginSignupComponent {
  
   userlogin(item:NgForm){
-    
     console.log(item.value);
     item.reset()
-   
-   
-  }
+   }
  
   
 
