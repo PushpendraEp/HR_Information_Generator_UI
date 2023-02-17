@@ -1,4 +1,4 @@
-// <!-- @ kirti ( 17/02/23 ) template driven login form and reset value after submission--->
+// <!-- @ kirti ( 17/02/23 ) Template Driven login form and reset value after submission--->
 import { Component } from '@angular/core';
 import {NgForm} from '@angular/forms'
 

@@ -1,7 +1,6 @@
 <!-- @ kirti ( 17/02/23 ) template driven login form with all validations--->
 <section class="joinnow">
     <section class="login col-lg-4 m-auto shadow-lg rounded">
-
         <div class="mb-2"><h3 class="text-center text-primary mt-2 mb-4">Login</h3></div>
         <form class="container rounded" #loginForm="ngForm" (ngSubmit)="userlogin(loginForm)">
             <div class="mb-3">
@@ -29,7 +28,7 @@
                     id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-            <button type="submit" class="btn btn-primary col-lg-12" [disabled]="loginForm.invalid">Log In</button>
+            <button type="submit" class="btn btn-primary col-lg-12" [disabled]="loginForm.invalid">Log-In</button>
         </form>
     </section>
 </section>
