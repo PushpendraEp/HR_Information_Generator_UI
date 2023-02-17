@@ -1,6 +1,6 @@
 
-<!-- @ kirti ( 16/02/23 ) simple login template driven from with validatyions here --->
-<!-- @ Ravi ( 17/02/23 ) Created login form template -->
+<!-- @ kirti ( 17/02/23 ) simple login template driven from with validatyions here --->
+
 <section class="joinnow">
     <section class="login col-lg-4 m-auto shadow-lg rounded">
 
@@ -8,16 +8,25 @@
         <form class="container rounded" #loginForm="ngForm" (ngSubmit)="userlogin(loginForm)">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" required #email="ngModel" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                    aria-describedby="emailHelp">
-                <span *ngIf="email.invalid && email.touched " class="text-danger">Email is required</span>
+                <input type="email" class="form-control" id="exampleInputEmail1" required ngModel name="email" #email="ngModel" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                    aria-describedby="emailHelp"  [ngClass]="{error: email.touched && email.invalid}">
+                    <div *ngIf="email.errors && email.touched">
+                      <small class="text-danger" *ngIf="email.errors['required']">Email is required</small>
+                      <small class="text-danger" *ngIf="email.errors['pattern']">please enter vailid email</small>
+                    </div>
+                
                 <div id="emailHelp" class="form-text"></div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" #password="ngModel" minlength="4" required name="password"
-                    id="exampleInputPassword1">
-                <span *ngIf="password.invalid && password.touched" class="text-danger">please enter valid Password</span>
+                <input type="password" class="form-control" ngModel #password="ngModel" pattern="[\S]+" minlength="4" required name="password"
+                    id="exampleInputPassword1" [ngClass]="{error: password.touched && password.invalid}">
+                    <div *ngIf="password.errors && password.touched ">
+                      <small class="text-danger" *ngIf="password.errors['required']">password is required</small>
+                      <small class="text-danger" *ngIf="password.errors['minlength']">minimum 4 charaters required</small>
+                      <small class="text-danger" *ngIf="password.errors['pattern']">space doesn't allowed</small>
+                    </div>
+                
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input"

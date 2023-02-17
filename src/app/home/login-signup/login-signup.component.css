@@ -21,3 +21,7 @@
     padding: 140px 30px;
   }
 }
+
+.error{
+  border: 1px solid red;
+}
