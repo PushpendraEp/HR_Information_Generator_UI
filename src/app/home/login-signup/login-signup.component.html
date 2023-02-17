@@ -1,27 +1,30 @@
-<!-- simple login page with bootstrap -->
+
+<!-- @ kirti ( 16/02/23 ) simple login template driven from with validatyions here --->
+<!-- @ Ravi ( 17/02/23 ) Created login form template -->
 <section class="joinnow">
-    <section class="login col-lg-4 m-auto shadow-lg" style="
-        border-radius: 10px">
+    <section class="login col-lg-4 m-auto shadow-lg rounded">
 
         <div class="mb-2"><h3 class="text-center text-primary mt-2 mb-4">Login</h3></div>
-        <form class="container rounded">
+        <form class="container rounded" #loginForm="ngForm" (ngSubmit)="userlogin(loginForm)">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1"
+                <input type="email" class="form-control" id="exampleInputEmail1" required #email="ngModel" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
                     aria-describedby="emailHelp">
+                <span *ngIf="email.invalid && email.touched " class="text-danger">Email is required</span>
                 <div id="emailHelp" class="form-text"></div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control"
+                <input type="password" class="form-control" #password="ngModel" minlength="4" required name="password"
                     id="exampleInputPassword1">
+                <span *ngIf="password.invalid && password.touched" class="text-danger">please enter valid Password</span>
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input"
                     id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-            <button type="submit" class="btn btn-primary col-lg-12">Log In</button>
+            <button type="submit" class="btn btn-primary col-lg-12" [disabled]="loginForm.invalid">Log In</button>
         </form>
     </section>
 </section>
