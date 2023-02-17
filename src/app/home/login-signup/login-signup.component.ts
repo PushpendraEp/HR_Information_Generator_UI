@@ -7,15 +7,11 @@ import {NgForm} from '@angular/forms'
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
- 
+
+ // <!-- @ kirti ( 17/02/23 ) Template Driven login form and reset value after submission--->
   userlogin(item:NgForm){
-    
-    console.log(item);
-    // item.reset().
-   
-   
-  }
- 
-  
+    console.log(item.value);
+    item.reset()
+   }
 
 }

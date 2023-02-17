@@ -1,16 +1,12 @@
 .joinnow {
-  /* The image used */
   background-color: rgb(56, 56, 203);
-
-  /* Full height */
   height: 100vh;
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 230px 100px;
 }
+
 .login {
   background-color: #ffffff;
   padding: 20px 30px;
@@ -20,4 +16,8 @@
   .joinnow {
     padding: 140px 30px;
   }
+}
+
+.error{
+  border: 1px solid rgb(166, 19, 19);
 }
