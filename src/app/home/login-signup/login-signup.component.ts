@@ -1,3 +1,4 @@
+// <!-- @ kirti ( 17/02/23 ) console form value and reset from value here--->
 import { Component } from '@angular/core';
 import {NgForm} from '@angular/forms'
 
@@ -7,11 +8,12 @@ import {NgForm} from '@angular/forms'
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
+
  
   userlogin(item:NgForm){
     
-    console.log(item);
-    // item.reset().
+    console.log(item.value);
+    item.reset()
    
    
   }

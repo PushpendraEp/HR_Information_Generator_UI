@@ -23,4 +23,15 @@
 .error{
   border: 1px solid red;
 
+<<<<<<< Updated upstream
 }
+=======
+@media screen and (max-width: 600px) {
+  .joinnow {
+    padding: 140px 30px;
+  }
+}
+.error{
+  border: 1px solid red;
+}
+>>>>>>> Stashed changes
