@@ -1,0 +1,19 @@
+
+.col-6{
+    text-align: center;
+    height: 15vh;
+
+}
+.text{
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+    font-size:medium;
+    justify-content: center;
+}
+
+.logo{
+    width: 15%;
+    height: 15vh;
+    float: left;
+   
+}

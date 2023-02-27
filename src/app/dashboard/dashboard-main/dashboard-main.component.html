@@ -1,1 +1,22 @@
-<p>dashboard-main works!</p>
+<!-- @ kirti soni ( 24/02/23 )  create dashboard page here-->
+<app-dashboard-header></app-dashboard-header>
+<div class="col-6">
+    <div class="container">
+        <div class="wrapper col-4">
+            <div class="title"  style="background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162)) ;"><span>upload file</span></div>
+        <form #userForm="ngForm" (ngSubmit)="userdata(userForm.value)">
+            <div class="row"  >
+                <input   type="month"  name="date" ngModel required>
+            </div>
+            <div class="rows">
+                <input required name="file"  #file="ngModel" ngModel (change)="selectfile($event)" type="file">
+            </div>
+            <div class="row button ">
+                <button type="submit"  [disabled]="userForm.invalid"   class="btn mt-2 shadow-1-strong rounded-7 text-white" style=" background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162));"> upload</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<app-dashboard-footer></app-dashboard-footer>
+<app-dashboard-selecter></app-dashboard-selecter>
