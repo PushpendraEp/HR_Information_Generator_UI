@@ -1,0 +1,76 @@
+/* <!-- @ kirti soni ( 24/02/23 )  design dashboard page here--> */
+.container{
+    max-width: 600px;
+  
+    padding: 0 20px;
+    margin: 170px auto;
+  }
+  .wrapper{
+      margin-top: 34vh;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+  }
+  .wrapper .title{
+    height: 110px;
+    
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper form{
+    padding: 25px 25px 25px 25px;
+  }
+  .wrapper form .row{
+    height: 55px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+ 
+  .wrapper form .rows input{
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding-left: 0px;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      
+  } 
+
+  .wrapper form .row input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+ 
+    padding-left: 60px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .wrapper form {
+    margin: -8px 0 20px 0;
+  }
+  
+  .wrapper form .button {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 0px;
+  
+    cursor: pointer;
+  }
+  
+  .wrapper form {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 17px;
+  }
