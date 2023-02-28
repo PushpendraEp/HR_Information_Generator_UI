@@ -1,6 +1,7 @@
 <!-- @ kirti ( 17/02/23 ) template driven login form with all validations--->
 <!-- @ Ravi ( 17/02/23 ) Created login form template -->
 <!-- @ Ravi ( 27/02/23 ) Created responsive login form with bootstrap -->
+<!-- @ Ravi ( 28/02/23 ) login api integration -->
 
 <section class="h-100 gradient-form" style="background-color: #e7d3d3">
   <div class="container py-5 h-100">
@@ -19,15 +20,17 @@
                   <h4 class="mt-1 mb-5 pb-1">We are The Philosophy Team</h4>
                 </div>
 
-                <form>
+                <form #login="ngForm" (ngSubmit)="userLogin(login.value)">
                   <h3 class="text-center" style="padding-bottom: 15px">
                     Login
                   </h3>
 
                   <div class="form-outline mb-4">
                     <input
-                      type="email"
-                      id="form2Example11"
+
+                      type="text"
+                      id="Email" name="Email" class="form-control" ngModel
+                     
                       class="form-control"
                       placeholder="Phone number or email address"
                     />
@@ -39,6 +42,7 @@
                   <div class="form-outline mb-4">
                     <input
                       type="password"
+                      id="Password" name="Password" class="form-control" ngModel
                       id="form2Example22"
                       class="form-control"
                       placeholder="Password"
@@ -51,7 +55,7 @@
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button
                       class="btn btn-danger btn-block fa-lg gradient-custom-2 mb-3"
-                      type="button"
+                      type="submit"
                     >
                       Log in
                     </button>
