@@ -4,6 +4,7 @@ import{ FormsModule} from '@angular/forms'
 // import { BrowserModule } from '@angular/platform-browser';
 import { HomeRoutingModule } from './home-routing.module';
 import { LoginSignupComponent } from './login-signup/login-signup.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,7 +16,9 @@ import { LoginSignupComponent } from './login-signup/login-signup.component';
     CommonModule,
     HomeRoutingModule,
     FormsModule,
+    HttpClientModule
     // BrowserModule
-  ]
+  ],
+  providers: [],
 })
 export class HomeModule { }
