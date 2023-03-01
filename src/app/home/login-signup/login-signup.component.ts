@@ -12,13 +12,18 @@ import { Router, Routes } from '@angular/router';
 })
 export class LoginSignupComponent {
   constructor(private userService:UserService ,private route:Router) {}
+  ngOnInit(){
+    if(this.userService.IsLoggedIn()){
+      this.route.navigate(['dashboard'])
+    }
+  }
  
  // <!-- @ kirti ( 17/02/23 ) Template Driven login form and reset value after submission--->
  //<!-- @ Ravi ( 28/02/23 ) login api integration -->
  userLogin(data:any){
   console.log(data)
   this.userService.login(data)
-  this.route.navigate(['/dashboard'])
+ 
  }
  
 } 
