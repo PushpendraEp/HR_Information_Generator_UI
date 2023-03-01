@@ -6,12 +6,7 @@
             <div class="title"  style="background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162)) ;"><span>upload file</span></div>
         <form #userForm="ngForm" (ngSubmit)="userdata(userForm.value)">
             <div class="row"  >
-                <input   type="number"  min="1" max="12" placeholder="Enter Month" name="month" ngModel required>
-            </div>
-        
-            <div class="row"  >
-                
-                <input   type="number"   min="2010" max="2099" placeholder="Enter Date" name="year" ngModel required>
+                <input   type="month"  name="date" ngModel required>
             </div>
             <div class="rows">
                 <input required name="file"  #file="ngModel" ngModel (change)="selectfile($event)" type="file">
