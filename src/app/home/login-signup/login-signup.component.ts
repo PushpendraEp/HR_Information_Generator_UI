@@ -11,6 +11,7 @@ import { Router, Routes } from '@angular/router';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
+  loginError: any
   constructor(private userService:UserService ,private route:Router) {}
   ngOnInit(){
     if(this.userService.IsLoggedIn()){
@@ -20,9 +21,17 @@ export class LoginSignupComponent {
  
  // <!-- @ kirti ( 17/02/23 ) Template Driven login form and reset value after submission--->
  //<!-- @ Ravi ( 28/02/23 ) login api integration -->
+  //<!-- @ kirti ( 28/02/23 ) login api integration with error message on dashboard-->
  userLogin(data:any){
   console.log(data)
-  this.userService.login(data)
+  this.userService.login(data).subscribe((result:any)=>{
+    localStorage.setItem("token", result.token)
+    this.route.navigate(['/dashboard'])
+  },
+  (err:any)=>{
+    this.loginError=err.error.message
+  })
+  
  
  }
  

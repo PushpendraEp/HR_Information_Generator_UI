@@ -1,8 +1,13 @@
 <!-- @ kirti soni ( 24/02/23 )  create dashboar selecter page  here -->
-<div class="col-6 fixed-top  offset-6  border border-3 border-primary" >
-    <div class="row ">
-        <input placeholder="Select date" type="date" id="example" class="form-control">
-    </div>
-</div>
 
- 
+<div class="col-6 fixed-top  offset-6  border border-3 border-primary" >
+    <div class=" row form-group">
+        <label for="year">Year:</label>
+        <select class="form-control" id="year" name="year" (change)="selectyear($event)" name="year" >
+        
+          <option *ngFor="let year of years"  [value]="year">{{year}}</option>
+        </select>
+      </div>
+     
+  
+</div>

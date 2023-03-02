@@ -6,9 +6,19 @@
 
 }
 
+.ui-datepicker-calendar {
+    display: none;
+    }
+
 
 .row{
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 20px;
+} 
+.rows{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+
 }

@@ -19,37 +19,42 @@
                   />
                   <h4 class="mt-1 mb-5 pb-1">We are The Philosophy Team</h4>
                 </div>
+           
+                <div *ngIf="loginError" class="text-center text-danger">{{ loginError }}</div>
 
                 <form #login="ngForm" (ngSubmit)="userLogin(login.value)">
                   <h3 class="text-center" style="padding-bottom: 15px">
                     Login
                   </h3>
-
+                  <label class="form-label " for="form2Example11"
+                  style="color: rgb(20, 19, 18); font-size:larger" >Useremail</label
+                >
                   <div class="form-outline mb-4">
+                    
                     <input
 
                       type="text"
                       id="Email" name="Email" class="form-control" ngModel
                      
                       class="form-control"
-                      placeholder="Phone number or email address"
+                      placeholder="Please Enter Email"
                     />
-                    <label class="form-label" for="form2Example11"
-                      >Username</label
-                    >
+                  
                   </div>
+                  <label class="form-label" for="form2Example22"
+                    style="color: rgb(20, 19, 18); font-size:larger" >Password</label
+                    >
 
                   <div class="form-outline mb-4">
+                    
                     <input
                       type="password"
                       id="Password" name="Password" class="form-control" ngModel
                       id="form2Example22"
                       class="form-control"
-                      placeholder="Password"
+                      placeholder="Please Enter Password"
                     />
-                    <label class="form-label" for="form2Example22"
-                      >Password</label
-                    >
+                    
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">

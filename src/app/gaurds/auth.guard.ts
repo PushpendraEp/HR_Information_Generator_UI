@@ -8,6 +8,7 @@ import { UserService } from '../service/user.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private user:UserService ,private routes: Router){}
+   //<!-- @ kirti ( 28/02/23 ) ladd authgaurd on dashboard -->
   canActivate(){
     
     
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate {
          }
          else {
           this.routes.navigate(['']);
-          alert("please login")
+         
           return false;
         }
   }

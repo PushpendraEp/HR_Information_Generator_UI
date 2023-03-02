@@ -10,12 +10,12 @@ import { NgForm } from '@angular/forms';
 export class DashboardMainComponent {
 
   selectfile(event: any){
-    console.warn(event.target.files)
+    console.warn(event.target.files[0])
 
   }
   userdata(item:NgForm){
    
-    console.warn(item)
+    console.warn(item.value.month)
 
   }
 }

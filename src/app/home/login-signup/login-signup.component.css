@@ -10,7 +10,7 @@
   box-shadow: inset 0px 0px 2px 2px #b74600;
 }
 .row input::placeholder {
-  color: #b74600;
+  color: #1d1d1d;
 }
 .card {
   border-radius: 2em;
