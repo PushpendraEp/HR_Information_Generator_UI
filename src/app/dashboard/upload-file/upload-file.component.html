@@ -1,0 +1,78 @@
+<!-- <section
+  class="h-80  gradient-form  "
+ > -->
+  <div class="container-fluid"> 
+    <div class="row d-flex justify-content-center align-items-center h-100  ">
+      <div class="col-xl-8 " >
+        <div class="card text-black" >
+          <div class="row g-0">
+            <div class="col-lg-12">
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center mt-3">
+                  <img 
+                    src="./../../../assets/Service4.webp"
+                    style="width: 120px"
+                    alt="logo"
+                    />
+                  <h4 class=" mb-5 pb-1">upload file</h4>
+                </div>
+                <form #userForm="ngForm" (ngSubmit)="userdata(userForm)">
+                  <!-- <select class="form-outline mb-4" id="months"
+                  name="months"
+                  class="form-control text-center "
+        
+                  required
+
+                  placeholder="Enter Month"><option class="form-control text-center mb-4 " *ngFor="let i of month" ngModel >{{i}}</option></select>
+                  -->
+                  <div class="form-outline mb-4">
+                    <input
+                      type="number"
+                      id="months"
+                      name="months"
+                      class="form-control text-center "
+                      min="1"
+                      max="12 "
+                      ngModel
+                      #months="ngModel"
+                      #years="ngModel" required
+
+                      placeholder="Enter Month"
+                      />
+                  </div>
+              
+                  <div class="form-outline mb-4">
+                    <input
+                      type="number"
+                      id="years"
+                      name="years"
+                      class="form-control text-center"
+                      min="2021"
+                      max="2030"
+                      ngModel
+                      #years="ngModel" required
+                
+                      placeholder="Enter year"
+                      />
+                  </div> 
+                  <div class="form-outline  mb-3 justify-content-center " >
+                    <input   required name="file"   class="form-control text-center" #file="ngModel" ngModel (change)="selectfile($event)" type="file">
+                </div>
+                  <div class=" row form-outline justify-content-center mb-3 my-3 px-3">
+                    <button [disabled]="userForm.invalid"
+                      type="submit"
+                      class=" form-control btn btn-block fa-lg gradient-custom-2
+                     ">
+                      Upload
+                    </button>
+                  </div>
+                </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- </section>  -->

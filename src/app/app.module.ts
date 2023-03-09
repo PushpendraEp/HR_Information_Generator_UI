@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { CommonModuleModule } from './common-module/common-module.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,

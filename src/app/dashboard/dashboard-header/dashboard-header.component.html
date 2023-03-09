@@ -1,8 +1,23 @@
-<div class="row fixed-top">
-    <div class="col-6  shadow-1-strong rounded-7 mb-5" style=" background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162));">
-    
-      <img class="logo" src="https://media.licdn.com/dms/image/C4D0BAQGAMUzm0O2mJA/company-logo_200_200/0/1519931468757?e=2147483647&v=beta&t=_3UXB0Gcz1ec8bVDpBXv53-w15c2z7YoFn9XId7_1H8">
-      <h5 class="text text-center font-weight-bold text-white" >Engineer Philosophy Web Services Pvt. Ltd</h5>
-    </div>
-  </div>
 
+  <div class="pos-f-t " >
+ 
+    <header class="navbar    bg-dark" >
+      <button class="navbar-toggler " (click)="toggleNavbar()"  type="button">
+        <span class="navbar-toggler-icon" ></span>
+      </button>
+     
+    </header>
+    <nav [ngClass]="{'open': isNavbarOpen}">
+      <div class="border border-1 border-secondary rounded g-0">
+      <ul>
+        <li  > <a routerLink="upload-file" >upload_file</a></li>
+        <li style="margin-bottom: 67vh;" ><a routerLink="emp-details" >employee_details</a></li>
+        <li><a routerLink="myprofile" >myprofile</a></li>
+        <li><a routerLink="/" >logout</a></li>
+      </ul>
+    </div>
+    </nav>
+
+  </div>
+  <router-outlet></router-outlet>
+ 

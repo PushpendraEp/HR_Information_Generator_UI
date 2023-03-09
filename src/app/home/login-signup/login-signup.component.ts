@@ -11,6 +11,7 @@ import { Router, Routes } from '@angular/router';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
+  loginError:String| undefined;
   constructor(private userService:UserService ,private route:Router) {}
   ngOnInit(){
     if(this.userService.IsLoggedIn()){
@@ -22,8 +23,13 @@ export class LoginSignupComponent {
  //<!-- @ Ravi ( 28/02/23 ) login api integration -->
  userLogin(data:any){
   console.log(data)
-  this.userService.login(data)
+  this.userService.login(data).subscribe((result:any)=>{
+    localStorage.setItem("token", result.token)
+    this.route.navigate(['/dashboard'])
+  },
+  (err:any)=>{
+    this.loginError=err.error.message
+  })
+  
  
- }
- 
-} 
+} }

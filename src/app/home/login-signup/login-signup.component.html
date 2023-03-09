@@ -2,59 +2,65 @@
 <!-- @ Ravi ( 17/02/23 ) Created login form template -->
 <!-- @ Ravi ( 27/02/23 ) Created responsive login form with bootstrap -->
 <!-- @ Ravi ( 28/02/23 ) login api integration -->
+<!-- @ kirti ( 3/02/23 ) design of login page--->
 
-<section class="h-100 gradient-form" style="background-color: #e7d3d3">
+<section class=" gradient-form" style="background-color: #ede3e3 ; height:100vh;" >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
+      <div class="col-xl-6">
         <div class="card text-black">
           <div class="row g-0">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
               <div class="card-body p-md-5 mx-md-4">
                 <div class="text-center">
                   <img
                     src="./../assets/logo.jpeg"
-                    style="width: 120px"
+                    style="width: 180px"
                     alt="logo"
                   />
-                  <h4 class="mt-1 mb-5 pb-1">We are The Philosophy Team</h4>
+                  <h4 class=" mb-3 pb-1">We are The Philosophy Team</h4>
                 </div>
+           
+                <div *ngIf="loginError" class="text-center text-danger">{{ loginError }}</div>
 
                 <form #login="ngForm" (ngSubmit)="userLogin(login.value)">
-                  <h3 class="text-center" style="padding-bottom: 15px">
+                  <h2 class="text-center" style="padding-bottom: 30px">
                     Login
-                  </h3>
-
+                  </h2>
+                  <h5 class="form-label " for="form2Example11"
+                  style="color: #0d0d0d;  " >*Useremail</h5
+                >
                   <div class="form-outline mb-4">
+                    
                     <input
 
                       type="text"
                       id="Email" name="Email" class="form-control" ngModel
-                     
+                     style="font-style: unset;"
                       class="form-control"
-                      placeholder="Phone number or email address"
+                      placeholder="Please Enter Email"
                     />
-                    <label class="form-label" for="form2Example11"
-                      >Username</label
-                    >
+                  
                   </div>
+                  <h5 class="form-label" for="form2Example22"
+                    style="color: #0d0d0d; " >*Password</h5
+                    >
 
                   <div class="form-outline mb-4">
+                    
                     <input
                       type="password"
                       id="Password" name="Password" class="form-control" ngModel
                       id="form2Example22"
                       class="form-control"
-                      placeholder="Password"
+                      placeholder="Please Enter Password"
                     />
-                    <label class="form-label" for="form2Example22"
-                      >Password</label
-                    >
+                    
                   </div>
 
-                  <div class="text-center pt-1 mb-5 pb-1">
+                  <div class=" text-center pt-1 mb-3 ">
                     <button
-                      class="btn btn-danger btn-block fa-lg gradient-custom-2 mb-3"
+                      class=" btn text-white " style="background-color:  #2680aa;"
                       type="submit"
                     >
                       Log in
@@ -63,20 +69,7 @@
                 </form>
               </div>
             </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">
-                  Engineer Philosophy Web Services Private Limited
-                </h4>
-                <p class="small mb-0">
-                  Our Company Engineer Philosophy Web Services Pvt. Ltd. focus
-                  on implementation of your dreams and requirement in the field
-                  of technology. We Believe in providing best customized
-                  services for production and development of software’s, web
-                  applications, mobile development…
-                </p>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
