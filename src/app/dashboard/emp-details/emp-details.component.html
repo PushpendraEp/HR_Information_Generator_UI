@@ -1,0 +1,55 @@
+
+<div class="container-fluid  border border-white ">
+  
+    <div class="row col-xl-6  " >
+        <div class="col mb-5">
+            <select (change)="onChange($event)">
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+              </select>
+              
+              <select *ngIf="selectedOption === 'month'" (change)="change($event)">
+                <option *ngFor="let i of yearList" value="1">1  {{i}}</option>
+                <option *ngFor="let i of yearList" value="2">2  {{i}}</option>
+                <option *ngFor="let i of yearList" value="3">3  {{i}}</option>
+                <option *ngFor="let i of yearList" value="4">4  {{i}}</option>
+                <option *ngFor="let i of yearList" value="5">5  {{i}}</option>
+                <option *ngFor="let i of yearList" value="6">6  {{i}}</option>
+                <option *ngFor="let i of yearList" value="7">7  {{i}}</option>
+                <option *ngFor="let i of yearList" value="8">8  {{i}}</option>
+                <option *ngFor="let i of yearList" value="9">9  {{i}}</option>
+                <option *ngFor="let i of yearList" value="10">10  {{i}}</option>
+                <option *ngFor="let i of yearList" value="11">11  {{i}}</option>
+                <option *ngFor="let i of yearList" value="12">12  {{i}}</option>
+              </select>
+              
+              <select *ngIf="selectedOption === 'year'" (change)="selectyear($event)">
+                <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+              </select>
+        <input class="col mt-4" type="search" placeholder="search employee"> 
+    </div>
+    </div>
+    <div class="rows border  col-xl-6 "  >
+        <div class=" row1 border text-center " style=" background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135));"><h5 style="margin: 3vh;">Employee Details</h5></div>
+        <table class="mt-5" style="text-align: center;">
+            <tr><th class="border border-dark  text-white border-1 bg-dark" style="height:1ch; ;width: 100px; " *ngFor="let i of header">{{i}}</th></tr>
+           
+            <tr  *ngFor="let value of this.res">
+                <td class="border  border-1  border-dark" style="height:1ch; ;width: 100px; ">{{value.emp_id}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.emp_name}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.emp_email}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.emp_contact_details}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.emp_designation}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.emp_role}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.technology}}</td>
+                <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.totalSalaryPayOut}}</td>
+                <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.basic}}</td>
+                <td class="border  border-1 border-dark " style="height:1ch; ;width: 100px;">{{value.HRA}}</td>
+                <td class="border   border-1 border-dark " style="height:1ch; ;width: 100px;">{{value.PF}}</td>
+                <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.Others}}</td>
+             </tr>
+
+          </table>
+</div>
+</div>
+

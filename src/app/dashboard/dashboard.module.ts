@@ -6,6 +6,9 @@ import { DashboardMainComponent } from './dashboard-main/dashboard-main.componen
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardFooterComponent } from './dashboard-footer/dashboard-footer.component';
 import { DashboardSelecterComponent } from './dashboard-selecter/dashboard-selecter.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { EmpDetailsComponent } from './emp-details/emp-details.component';
+
 
 
 @NgModule({
@@ -13,7 +16,11 @@ import { DashboardSelecterComponent } from './dashboard-selecter/dashboard-selec
     DashboardMainComponent,
     DashboardHeaderComponent,
     DashboardFooterComponent,
-    DashboardSelecterComponent
+    DashboardSelecterComponent,
+    EmpDetailsComponent,
+    UploadFileComponent
+
+   
   ],
   imports: [
     CommonModule,

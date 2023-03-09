@@ -1,8 +1,35 @@
 <!-- @ kirti soni ( 24/02/23 )  create dashboar selecter page  here -->
-<div class="col-6 fixed-top  offset-6  border border-3 border-primary" >
+<!-- <div class="col-6 fixed-top  offset-6  border border-3 border-primary" >
     <div class="row ">
-        <input placeholder="Select date" type="date" id="example" class="form-control">
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <select placeholder="search" class="form-control" id="years" name="years" [(ngModel)]="selectedYear" (change)="selectyear()" name="years" >
+              <option *ngFor="let year of years" [value]="year">{{year}}</option>
+            </select>
+            <div  *ngIf="data">
+                <ul>
+               
+                    <li class="row border border-2 text-white justify-content-center" style=" background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162));" *ngFor="let item of data" (click)="tablename(item.name)">*{{item.name}}</li></ul>
+            
+            </div>
+          </div>
+          <table class="mt-5" style="text-align: center;">
+            <tr><th class="border border-dark  text-white border-1 bg-dark" style="height:1ch; ;width: 100px; " *ngFor="let i of header">{{i}}</th></tr>
+           
+            <tr  *ngFor="let value of this.tabledata">
+                <td class="border  border-1  border-dark" style="height:1ch; ;width: 100px; ">{{value.emp_id}}</td>
+                <td class="border   border-1   border-dark" style="height:1ch; ;width: 100px;">{{value.emp_name}}</td>
+                <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.totalSalaryPayOut}}</td>
+                <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.basic}}</td>
+                <td class="border  border-1 border-dark " style="height:1ch; ;width: 100px;">{{value.HRA}}</td>
+                <td class="border   border-1 border-dark " style="height:1ch; ;width: 100px;">{{value.PF}}</td>
+                <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.Others}}</td>
+
+
+            </tr>
+
+          </table>
     </div>
 </div>
 
- 
+  -->

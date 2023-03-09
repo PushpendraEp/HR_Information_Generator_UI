@@ -1,6 +1,4 @@
-.gradient-custom-2 {
-  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-}
+
 
 .form-control {
   border-radius: 30px;
@@ -10,7 +8,12 @@
   box-shadow: inset 0px 0px 2px 2px #b74600;
 }
 .row input::placeholder {
-  color: #b74600;
+  color: #0a0a09;
+}
+.btn{
+  width: 30%;
+  
+  
 }
 .card {
   border-radius: 2em;

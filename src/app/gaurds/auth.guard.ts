@@ -7,6 +7,7 @@ import { UserService } from '../service/user.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+   /* @ kirti soni ( 28/03/23 ) add authgaurd */
   constructor(private user:UserService ,private routes: Router){}
   canActivate(){
     
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate {
          }
          else {
           this.routes.navigate(['']);
-          alert("please login")
+          // alert("please login")
           return false;
         }
   }
