@@ -8,7 +8,11 @@ import { DashboardFooterComponent } from './dashboard-footer/dashboard-footer.co
 import { DashboardSelecterComponent } from './dashboard-selecter/dashboard-selecter.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+// import { PipiPipe } from '../pipi.pipe';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 
 @NgModule({
@@ -18,14 +22,17 @@ import { EmpDetailsComponent } from './emp-details/emp-details.component';
     DashboardFooterComponent,
     DashboardSelecterComponent,
     EmpDetailsComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    MyProfileComponent,
+    
 
    
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule,NgxPaginationModule,Ng2FilterPipeModule
   ]
 })
 export class DashboardModule { }

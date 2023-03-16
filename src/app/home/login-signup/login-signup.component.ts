@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+
 import {NgForm} from '@angular/forms'
 
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/service/user.service';
 import { Router, Routes } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login-signup',
@@ -11,6 +13,8 @@ import { Router, Routes } from '@angular/router';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
+
+  decodetoken:any;
   loginError:String| undefined;
   constructor(private userService:UserService ,private route:Router) {}
   ngOnInit(){
@@ -24,8 +28,9 @@ export class LoginSignupComponent {
  userLogin(data:any){
   console.log(data)
   this.userService.login(data).subscribe((result:any)=>{
-    localStorage.setItem("token", result.token)
-    this.route.navigate(['/dashboard'])
+  localStorage.setItem("token", result.token)
+ console.log(result.token)
+ this.route.navigate(['/dashboard'])
   },
   (err:any)=>{
     this.loginError=err.error.message

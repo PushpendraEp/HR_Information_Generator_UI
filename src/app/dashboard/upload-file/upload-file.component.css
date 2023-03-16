@@ -1,17 +1,21 @@
-.container{
+
+ /* @ kirti soni ( 6/03/23 ) css design of upload file */
+/* .container{
     height: 60vh;
 
-    margin-bottom: 30%;}
+    margin-bottom: 30%;} */
   .col-xl-12{
     margin-top: 20vh;
-    height: 60vh;
-
-   
+    position:absolute;
+ 
   }
   .card{
-    height:60% ;
+    height:55% ;
+width: 60%;
+
+
     margin-bottom: 10vh;
-    margin-left: 36vh;
+    margin-left: 300px;
     
   }
   .col-xl-8{
@@ -27,6 +31,7 @@
   }
   .form-control {
     border-radius: 30px;
+
   }
   .row input:focus {
     background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162));
