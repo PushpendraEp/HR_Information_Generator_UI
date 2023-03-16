@@ -1,21 +1,24 @@
-
-  <div class="pos-f-t " >
- 
-    <header class="navbar    bg-dark" >
-      <button class="navbar-toggler " (click)="toggleNavbar()"  type="button">
+<!-- @ kirti soni ( 6/03/23 )  design of header and side navbar-->
+  <div class="pos-f-t  " >
+    
+    <header class="navbar" >
+      <button class="navbar-toggler mb-1" (click)="toggleNavbar()"   type="button" style="position: fixed;">
         <span class="navbar-toggler-icon" ></span>
       </button>
-     
+
     </header>
-    <nav [ngClass]="{'open': isNavbarOpen}">
-      <div class="border border-1 border-secondary rounded g-0">
-      <ul>
-        <li  > <a routerLink="upload-file" >upload_file</a></li>
-        <li style="margin-bottom: 67vh;" ><a routerLink="emp-details" >employee_details</a></li>
-        <li><a routerLink="myprofile" >myprofile</a></li>
-        <li><a routerLink="/" >logout</a></li>
+    <nav  id="sidebar" [ngClass]="{'open': isNavbarOpen}">
+ <!-- @ kirti soni ( 6/03/23 )   navbar  routerlink -->
+      <!-- <div class="border border-1 border-secondary rounded g-0"> -->
+      <ul >
+        <li  > <a   class="sidenav-link mt-3" routerLink="upload-file" >Upload New File</a></li>
+        <li  ><a   class="sidenav-link" routerLink="emp-details"  >Employee Details</a></li>
+     
+        <li ><a   class="sidenav-link" routerLink="my-profile" >Myprofile</a></li>
+     
+        <li  (click)="logout()"  ><a class="sidenav-link sidenav-link-logout ">Logout</a></li>
       </ul>
-    </div>
+    <!-- </div> -->
     </nav>
 
   </div>

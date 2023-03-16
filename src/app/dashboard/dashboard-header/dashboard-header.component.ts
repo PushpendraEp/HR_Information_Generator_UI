@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardHeaderComponent {
   constructor(private routes:Router){}
-  myppp="myppp"
+  // <!-- @ kirti soni ( 6/03/23 )  fun for navbar open and close-->
   upload(){
     this.routes.navigate(['/upload-file'])
   }
@@ -16,5 +16,9 @@ export class DashboardHeaderComponent {
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
+  }
+  logout(){
+    localStorage.removeItem('token');
+    this.routes.navigate([''])
   }
 }

@@ -1,0 +1,78 @@
+.container{
+  margin-left: 400px;
+}
+
+.form-control {
+    border-radius: 30px;
+border-color: rgb(36, 36, 37);
+  }
+  .row input:focus {
+    border-color:#0a0a0b;
+    box-shadow: inset 0px 0px 2px 2px #2b2521;
+  }
+  .row input{
+    font-size: larger;
+    text-align: center;
+
+    font-weight: bold;
+    font-style: oblique;
+  color: #0a0a0b;
+  }
+ 
+  
+  .row h2{
+    font-size: larger;
+    text-align: center;
+   
+    font-weight: bold;
+    font-style: oblique;
+  color: #0a0a0b;
+  }
+
+  .btn{
+    width: 30%;
+    }
+    .col-xl-10{
+
+    margin-top: 10vh;
+ 
+     
+    }
+  .card {
+ 
+    /* margin-top: 30vh; */
+    border-radius: 4em;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    border-color: rgb(174, 220, 241);
+    background-color: rgb(213, 228, 233);
+  }
+  @media (min-width: 769px) {
+    .gradient-custom-2 {
+      border-radius: 30px;
+    }
+  }
+  /* .employee-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .employee {
+    flex-basis: calc(33.33% - 20px);
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .employee {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .employee {
+      flex-basis: 100%;
+    }
+  }
+   */
