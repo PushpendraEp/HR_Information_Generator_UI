@@ -53,7 +53,16 @@
                           <td>{{value.extras}}</td>
                           <td>{{value.month}}</td>
                           <td>{{value.year}}</td>
-                          <td><button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">Download</button> </td>
+                          <td>
+                            <button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">
+                              <!-- <span *ngIf="!downloadLaoder"> -->
+                                Download
+                              <!-- </span> -->
+                              <!-- <div *ngIf="downloadLaoder" class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                              </div> -->
+                            </button>
+                           </td>
                           </tr>  
                     </tbody>
                   </table>
