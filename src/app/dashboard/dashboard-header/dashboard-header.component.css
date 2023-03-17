@@ -109,6 +109,6 @@ list-style-type: none;
   .sidenav-link-logout {
     position: fixed;
 bottom: 0;
-  width: 100%;
+  width: 250px;
  
   }

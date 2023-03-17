@@ -12,8 +12,10 @@
 }
 .btn{
   width: 30%;
-  
-  
+ 
+}
+.error{
+ border-color: red;
 }
 .card {
   border-radius: 2em;

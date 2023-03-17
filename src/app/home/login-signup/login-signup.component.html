@@ -3,9 +3,9 @@
 <!-- @ Ravi ( 27/02/23 ) Created responsive login form with bootstrap -->
 <!-- @ Ravi ( 28/02/23 ) login api integration -->
 <!-- @ kirti ( 3/02/23 ) design of login page--->
-
-<section class=" gradient-form" style="background-color: #ede3e3 ; height:100vh;" >
-  <div class="container py-5 h-100">
+<!-- @ kirti ( 3/02/23 ) design of login page and validation--->
+<section class=" gradient-form " style="background-color: #ede3e3 ; height:100vh;" >
+  <div class="container py-5 h-100" >
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-6">
         <div class="card text-black">
@@ -16,55 +16,38 @@
                   <img
                     src="./../assets/logo.jpeg"
                     style="width: 180px"
-                    alt="logo"
-                  />
+                    alt="logo"/>
                   <h4 class=" mb-3 pb-1">We are The Philosophy Team</h4>
                 </div>
            
                 <div *ngIf="loginError" class="text-center text-danger">{{ loginError }}</div>
 
                 <form #login="ngForm" (ngSubmit)="userLogin(login.value)">
-                  <h2 class="text-center" style="padding-bottom: 30px">
-                    Login
-                  </h2>
-                  <h5 class="form-label " for="form2Example11"
-                  style="color: #0d0d0d;  " >*Useremail</h5
-                >
-                  <div class="form-outline mb-4">
-                    
-                    <input
+                  <h2 class="text-center" style="padding-bottom: 30px">Login </h2>
 
-                      type="text"
-                      id="Email" name="Email" class="form-control" ngModel
-                     style="font-style: unset;"
-                      class="form-control"
-                      placeholder="Please Enter Email"
-                    />
-                  
+                  <h5 class="form-label " for="form2Example11"style="color: #0d0d0d;  " >*Useremail</h5>
+                  <div class="form-outline mb-4">
+                    <input type="text" id="Email" name="Email" class="form-control" pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$" ngModel #Email="ngModel" style="font-style: unset;" class="form-control" required
+                    placeholder="Please Enter Email" [ngClass]="{error: Email.touched && Email.invalid}">
+                    <div *ngIf="Email.errors && Email.touched">
+                      <small class="text-danger" *ngIf="Email.errors['required']">Email is required</small>
+                      <small class="text-danger" *ngIf="Email.errors['pattern']">please enter vailid email</small>
                   </div>
-                  <h5 class="form-label" for="form2Example22"
-                    style="color: #0d0d0d; " >*Password</h5
-                    >
-
+                  </div>
+                  
+                    
+                  <h5 class="form-label" for="form2Example22" style="color: #0d0d0d; " >*Password</h5>
                   <div class="form-outline mb-4">
-                    
-                    <input
-                      type="password"
-                      id="Password" name="Password" class="form-control" ngModel
-                      id="form2Example22"
-                      class="form-control"
-                      placeholder="Please Enter Password"
-                    />
-                    
+                    <input type="password" id="Password" name="Password" class="form-control" ngModel #Password="ngModel" required  pattern="^[\S]+$" [minlength]="4"
+                      id="form2Example22" class="form-control" placeholder="Please Enter Password" [ngClass]="{error: Password.touched && Password.invalid}">
+                      <div *ngIf="Password.errors && Password.touched ">
+                        <small class="text-danger" *ngIf="Password.errors['required']">password is required</small>
+                        <small class="text-danger" *ngIf="Password.errors['minlength']">minimum 4 charaters required</small>
+                        <small class="text-danger" *ngIf="Password.errors['pattern']">space doesn't allowed</small></div>
                   </div>
 
                   <div class=" text-center pt-1 mb-3 ">
-                    <button
-                      class=" btn text-white " style="background-color:  #2680aa;"
-                      type="submit"
-                    >
-                      Log in
-                    </button>
+                  <button class=" btn text-white " style="background-color:  #2680aa;" type="submit" >Log in</button>
                   </div>
                 </form>
               </div>

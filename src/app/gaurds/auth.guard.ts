@@ -10,16 +10,33 @@ import { HttpClient } from '@angular/common/http';
 export class AuthGuard implements CanActivate {
      /* @ kirti soni ( 28/03/23 ) add authgaurd */
   constructor(private user:UserService ,private routes: Router,private http: HttpClient){}
-  canActivate(){
-    if (this.user.IsLoggedIn()){
+   canActivate(){
+    const token = localStorage.getItem('token');
+    if (!token) {
+    this.routes.navigate(['']);
+      return false;
+    }
+    try
+     {
+      this.user.admin_Details()
+      return true;
+    } 
+    catch (error) 
+    {
+      this.routes.navigate(['']);
+      return false;
+    }
+  }
+//     if (this.user.IsLoggedIn()){
       
 
-     return true;
-    }
-  else {
-  this.routes.navigate(['']);
-  return false;
-}}
+//      return true;
+//     }
+//   else {
+//   this.routes.navigate(['']);
+//   return false;
+// }
 }
+
 
 

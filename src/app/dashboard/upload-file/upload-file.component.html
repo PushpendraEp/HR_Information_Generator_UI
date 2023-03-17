@@ -35,7 +35,7 @@
               
                   
                   <div class="form-outline  mb-3 justify-content-center " >
-                    <input   required name="file"   class="form-control text-center" #file="ngModel" ngModel (change)="selectfile($event)" type="file">
+                    <input accept=".xlsx,.xls,.csv"  required name="file"   class="form-control text-center" #file="ngModel" ngModel (change)="selectfile($event)" type="file">
                 </div>
                   <div class=" row form-outline justify-content-center mb-3 my-3 px-3">
                     <button [disabled]="userForm.invalid"
