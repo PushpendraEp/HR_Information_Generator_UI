@@ -35,9 +35,9 @@ export class UserService {
   updateData(data: any): Observable<any> {
     console.log(data)
     const Data=data
-    const userid=data[0].id
-    console.log(userid)
-    const url = `http://localhost:3000/updateUser?id=${userid}`;
+    // const userid=data[0].id
+    // console.log(userid)
+    const url = `http://localhost:3000/updateUser`;
 
     return this.http.put<any>(url,Data);
   }
@@ -58,7 +58,7 @@ downloadfile(data:any){
 
   //  @ kirti soni ( 8/03/23 ) api integration for geeting data bsed on year
 
-  public getData(yeardata: string): Observable<any[]> {
+  public getData(yeardata: any): Observable<any[]> {
   const selectedYear=yeardata;
   console.log(selectedYear);
     
