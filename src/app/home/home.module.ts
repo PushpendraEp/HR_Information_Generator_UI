@@ -5,6 +5,8 @@ import{ FormsModule} from '@angular/forms'
 import { HomeRoutingModule } from './home-routing.module';
 import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { HttpClientModule } from '@angular/common/http';
+// import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -16,7 +18,13 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HomeRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // ToastrModule.forRoot({
+    //   timeOut: 10000,
+    //   positionClass: 'toast-bottom-right',
+    //   preventDuplicates: true,
+    //   toastClass: 'ngx-toastr bg-success'
+    // })
     // BrowserModule
   ],
   providers: [],

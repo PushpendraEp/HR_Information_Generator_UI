@@ -1,11 +1,15 @@
 
+
 <div class="container-fluid  border border-white ">
   
     <div class="row col-xl-6  " >
         <div class="col mb-5">
+         
+         
             <select (change)="onChange($event)">
+            
                 <option value="month">Month</option>
-                <option value="year">Year</option>
+                <option value="year">Year</option>   
               </select>
               
               <select *ngIf="selectedOption === 'month'" (change)="change($event)">
@@ -22,15 +26,22 @@
                 <option *ngFor="let i of yearList" value="11">11  {{i}}</option>
                 <option *ngFor="let i of yearList" value="12">12  {{i}}</option>
               </select>
+             
               
               <select *ngIf="selectedOption === 'year'" (change)="selectyear($event)">
                 <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
               </select>
+            
         <input class="col mt-4" type="search" placeholder="search employee"> 
     </div>
+    
     </div>
     <div class="rows border  col-xl-6 "  >
         <div class=" row1 border text-center " style=" background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135));"><h5 style="margin: 3vh;">Employee Details</h5></div>
+        <div class="spinner-border" role="status" *ngIf="uploadLoader">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <span *ngIf="!uploadLoader">
         <table class="mt-5" style="text-align: center;">
             <tr><th class="border border-dark  text-white border-1 bg-dark" style="height:1ch; ;width: 100px; " *ngFor="let i of header">{{i}}</th></tr>
            
@@ -47,9 +58,10 @@
                 <td class="border  border-1 border-dark " style="height:1ch; ;width: 100px;">{{value.HRA}}</td>
                 <td class="border   border-1 border-dark " style="height:1ch; ;width: 100px;">{{value.PF}}</td>
                 <td class="border   border-1  border-dark" style="height:1ch; ;width: 100px;">{{value.Others}}</td>
+                <td (click)="ab(value)">download</td>
              </tr>
-
           </table>
+        </span>
 </div>
 </div>
 

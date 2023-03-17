@@ -59,11 +59,16 @@
                   </div>
 
                   <div class=" text-center pt-1 mb-3 ">
-                    <button
+                    <button [disabled]="login.invalid "
                       class=" btn text-white " style="background-color:  #2680aa;"
                       type="submit"
                     >
-                      Log in
+                    <div class="spinner-border" role="status" *ngIf="loginLoader">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                      <span *ngIf="!loginLoader">
+                        Log in
+                      </span>
                     </button>
                   </div>
                 </form>

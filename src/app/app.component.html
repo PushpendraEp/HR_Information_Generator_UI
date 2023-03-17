@@ -1,5 +1,9 @@
+<div *ngIf="showLoader$ | async as showLoader">
+  <app-spinner *ngIf="showLoader"></app-spinner>
+</div>
+
 <!-- @ Pushpendra ( 15/02/23 ) Added ${router-outlet} here -->
 <main>
   <router-outlet></router-outlet>
 </main>
-
+<!-- <app-spinner></app-spinner> -->

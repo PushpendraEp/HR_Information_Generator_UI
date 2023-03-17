@@ -8,8 +8,7 @@ import { DashboardFooterComponent } from './dashboard-footer/dashboard-footer.co
 import { DashboardSelecterComponent } from './dashboard-selecter/dashboard-selecter.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
-
-
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,14 +17,22 @@ import { EmpDetailsComponent } from './emp-details/emp-details.component';
     DashboardFooterComponent,
     DashboardSelecterComponent,
     EmpDetailsComponent,
-    UploadFileComponent
-
-   
+    UploadFileComponent,
+    
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FormsModule
-  ]
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      toastClass: 'ngx-toastr bg-success'
+    })
+    
+  ],
+  providers: [ToastrService],
+  exports: [DashboardMainComponent],
 })
 export class DashboardModule { }

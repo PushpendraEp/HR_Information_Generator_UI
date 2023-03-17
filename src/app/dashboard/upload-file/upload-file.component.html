@@ -16,6 +16,7 @@
                     />
                   <h4 class=" mb-5 pb-1">upload file</h4>
                 </div>
+               
                 <form #userForm="ngForm" (ngSubmit)="userdata(userForm)">
                   <!-- <select class="form-outline mb-4" id="months"
                   name="months"
@@ -25,6 +26,7 @@
 
                   placeholder="Enter Month"><option class="form-control text-center mb-4 " *ngFor="let i of month" ngModel >{{i}}</option></select>
                   -->
+                  
                   <div class="form-outline mb-4">
                     <input
                       type="number"
@@ -59,11 +61,18 @@
                     <input   required name="file"   class="form-control text-center" #file="ngModel" ngModel (change)="selectfile($event)" type="file">
                 </div>
                   <div class=" row form-outline justify-content-center mb-3 my-3 px-3">
-                    <button [disabled]="userForm.invalid"
+                    <button [disabled]="userForm.invalid || uploadLoader"
                       type="submit"
                       class=" form-control btn btn-block fa-lg gradient-custom-2
                      ">
+                     <div class="spinner-border" role="status" *ngIf="uploadLoader ">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                     
+                     <span *ngIf="!uploadLoader">
                       Upload
+                     </span>
+                      
                     </button>
                   </div>
                 </form>
@@ -76,3 +85,4 @@
   </div>
 
 <!-- </section>  -->
+

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoaderService } from './service/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HR_Information_Generator_UI';
+  showLoader$=this.loaderService.lodingAction$;
+  constructor(private loaderService:LoaderService){}
 }
