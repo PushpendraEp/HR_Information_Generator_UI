@@ -42,7 +42,10 @@
                       type="submit"
                       class=" form-control btn btn-block fa-lg gradient-custom-2
                      ">
-                      Upload
+                     <span *ngIf="!uploadLoader">Upload</span>
+                     <div *ngIf="uploadLoader" class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                     </button>
                   </div>
                 </form>

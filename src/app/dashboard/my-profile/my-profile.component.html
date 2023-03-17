@@ -1,67 +1,85 @@
 <!-- @ kirti soni ( 13/03/23 )  design of my profile-->
-<section class=" gradient-form" style=" height:100vh;" >
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-10">
-           
-           
-          <div class="card border-dark text-black mt-5">
-            <div class="row g-0">
-              <div class="col-lg-12">
-                
-               
-                <div class="card-body p-md-5 mx-md-5">
-                    <div class="text-center">
-                        <img
-                          src="./../../../assets/picture.png"
-                          style="width: 200px" height="200px;"
-                          alt="logo"
-                          /></div>
-               
-                  <div class="text-center mt-5 "  *ngFor="let employee of admindata">
-                 
-
-                  
-                   <div class="text-center"><div class="row"><div type="text" name="First_name"  class="form-outline mb-5 col-md-6 ">
-
-                    <input [ngModelOptions]="{standalone: true}" [disabled]="!isEditMode" [(ngModel)]="employee.First_name" class="form-control">
-                   </div>
-                   
-                   <div class="form-outline mb-5 col-md-6">
-
-                    <input type="text" name="last_name"  [disabled]="!isEditMode" ngModel [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.last_name" class="form-control">
-                   </div></div>
-                   <div class="row">
-                   <div class="form-outline mb-5 col-md-6">
-
-                    <input type="number" name="mobile_no"  [disabled]="!isEditMode" ngModel [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.mobile_no" class="form-control">
-                   </div>
-                   <div class="form-outline mb-5 col-md-6">
-
-                    <input type="email" name="Email"   [disabled]="!isEditMode" ngModel [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.Email" class="form-control">
-                   </div></div>
-                   <div class="row">
-                   <div class="form-outline mb-5 col-md-6">
-
-                    <input type="text" name="gender"  [disabled]="!isEditMode" ngModel [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.gender" class="form-control">
-                   </div>
-                  <div class="form-outline mb-5 col-md-6">
-
-                   <input type="text" name="DOB"  [disabled]="!isEditMode" ngModel [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.DOB" class="form-control"> </div></div></div>
+<section class=" gradient-form" style=" height:100vh;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
 
 
-                        <button class="text-center" (click)="EditMode()" *ngIf="!isEditMode" class=" btn text-white " style="background-color:   rgb(32, 76, 141);"type="submit">Edit</button>
-                        <!-- @ kirti soni ( 6/03/23 )  button for update admindetails-->
-                        <button (click)="update()"  *ngIf="isEditMode"  class=" btn text-white  " style="background-color:   rgb(32, 76, 141); margin-left:10px">update</button>
-                    
-                  </div>  </div>
+        <div class="card border-dark text-black mt-5">
+          <div class="row g-0">
+            <div class="col-lg-12">
+
+
+              <div class="card-body p-md-5 mx-md-5">
+                <div class="text-center">
+                  <img src="./../../../assets/picture.png" style="width: 200px" height="200px;" alt="logo" />
                 </div>
-             
+
+                <div class="text-center mt-5 " *ngFor="let employee of admindata">
+
+
+
+                  <div class="text-center">
+                    <div class="row">
+                      <div type="text" name="First_name" class="form-outline mb-5 col-md-6 ">
+
+                        <input [ngModelOptions]="{standalone: true}" [disabled]="!isEditMode"
+                          [(ngModel)]="employee.First_name" class="form-control">
+                      </div>
+
+                      <div class="form-outline mb-5 col-md-6">
+
+                        <input type="text" name="last_name" [disabled]="!isEditMode" ngModel
+                          [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.last_name" class="form-control">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-outline mb-5 col-md-6">
+
+                        <input type="number" name="mobile_no" [disabled]="!isEditMode" ngModel
+                          [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.mobile_no" class="form-control">
+                      </div>
+                      <div class="form-outline mb-5 col-md-6">
+
+                        <input type="email" name="Email" disabled ngModel [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="employee.Email" class="form-control">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-outline mb-5 col-md-6">
+
+                        <input type="text" name="gender" [disabled]="!isEditMode" ngModel
+                          [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.gender" class="form-control">
+                      </div>
+                      <div class="form-outline mb-5 col-md-6">
+
+                        <input type="text" name="DOB" [disabled]="!isEditMode" ngModel
+                          [ngModelOptions]="{standalone: true}" [(ngModel)]="employee.DOB" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <button class="text-center" (click)="EditMode()" *ngIf="!isEditMode" class=" btn text-white "
+                    style="background-color:   rgb(32, 76, 141);" type="submit">Edit</button>
+                  <!-- @ kirti soni ( 6/03/23 )  button for update admindetails-->
+                  <button (click)="update()" *ngIf="isEditMode" class=" btn text-white  "
+                    style="background-color:   rgb(32, 76, 141); margin-left:10px">
+                    <span *ngIf="!updateLoader">
+                      update
+                    </span>
+                    <div *ngIf="updateLoader" class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
+
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
- 
+  </div>
+</section>

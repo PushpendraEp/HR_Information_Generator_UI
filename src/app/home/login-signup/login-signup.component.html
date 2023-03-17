@@ -47,7 +47,16 @@
                   </div>
 
                   <div class=" text-center pt-1 mb-3 ">
-                  <button class=" btn text-white " style="background-color:  #2680aa;" type="submit" >Log in</button>
+                  <button class=" btn text-white " style="background-color:  #2680aa;" type="submit" >
+                    <span *ngIf="!loginLoader">
+                      Log in
+                    </span>
+                    <div *ngIf="loginLoader">
+                      <div class="spinner-border text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </button>
                   </div>
                 </form>
               </div>

@@ -5,246 +5,83 @@
 <section class="intro">
   <div class="bg-image h-100 " style="background-color: #f5f7fa;">
     <div class="mask  d-flex align-items-center h-100">
-      
+
       <div class="container  ">
-     
-          <div class="col-xl-12">
-            
-            <div class="rows col-xl-8 " >
-              <div class="col  ">
-                  <select (change)="onChange($event)">
-                      <option value="month">Month</option>
-                      <option value="year">Year</option>
-                    </select>
-                    <input type="month" *ngIf="selectedOption === 'month'" (change)="change($event)" >
-                  
-                    <select *ngIf="selectedOption === 'year'" (change)="selectyear($event)" >
-                      <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
-                    </select>
-              <input class="col " type="text" name="Emp_name" placeholder="search employee_details"  [(ngModel)]="searchQuery" >
-          </div>
-            <div class="card ">  
-            <div class="card-body p-0 ">
-          <div class=" row1 border text-center " style=" background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135));"><h5 style="margin: 3vh;">Employee Details</h5></div> 
-                <div class="table-responsive "  style="position: relative; height: 675px">
-                  <table class="table table-striped mb-0 text-center" *ngIf="this.res"  >
+
+        <div class="col-xl-12">
+
+          <div class="rows col-xl-8 ">
+            <div class="col  ">
+              <select (change)="onChange($event)">
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+              </select>
+              <input type="month" *ngIf="selectedOption === 'month'" (change)="change($event)">
+
+              <select *ngIf="selectedOption === 'year'" (change)="selectyear($event)">
+                <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+              </select>
+              <input class="col " type="text" name="Emp_name" placeholder="search employee_details"
+                [(ngModel)]="searchQuery">
+            </div>
+            <div class="card ">
+              <div class="card-body p-0 ">
+                <div class=" row1 border text-center "
+                  style=" background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135));">
+                  <h5 style="margin: 3vh;">Employee Details</h5>
+                </div>
+                <div class="table-responsive " style="position: relative; height: auto">
+                  <table class="table table-striped mb-0 text-center" *ngIf="this.res">
                     <thead class="bg-dark">
                       <tr>
-                        <th scope="col" *ngFor="let i of header " >{{i}}</th>
+                        <th scope="col" *ngFor="let i of header ">{{i}}</th>
                         <th>Download paySlip</th>
-                      
-                      </tr>
-                    </thead>
-                    <tbody> 
-                 
-                        <tr *ngFor="let value of res | filter:searchQuery |paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-                          <td >{{value.emp_id}}</td>
-                          <td >{{value.emp_name}}</td>
-                          <td>{{value.emp_email}}</td>
-                          <td >{{value.emp_contact_details}}</td>
-                          <td >{{value.emp_designation}}</td>
-                          <td >{{value.emp_role}}</td>
-                          <td >{{value.technology}}</td>
-                          <td >{{value.totalSalaryPayOut}}</td>
-                          <td>{{value.basic}}</td>
-                          <td >{{value.HRA}}</td>
-                          <td>{{value.PF}}</td>
-                          <td >{{value.Others}}</td>
-                          <td>{{value.extras}}</td>
-                          <td>{{value.month}}</td>
-                          <td>{{value.year}}</td>
-                          <td>
-                            <button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">
-                              <!-- <span *ngIf="!downloadLaoder"> -->
-                                Download
-                              <!-- </span> -->
-                              <!-- <div *ngIf="downloadLaoder" class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                              </div> -->
-                            </button>
-                           </td>
-                          </tr>  
-                    </tbody>
-                  </table>
-                  <!-- @ kirti soni ( 10/03/23 )  get data using pagination-->
-                  <pagination-controls *ngIf="this.res" (pageChange)="page=$event"></pagination-controls> 
-                  <table class="table table-striped mb-0 text-center" *ngIf="this.tdata"  >
-                    <thead class="bg-dark">
-                      <tr>
-                        <th scope="col" *ngFor="let i of Header " >{{i}}</th>
-                        <th>Download paySlip</th>
-                      
+
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let value of this.tdata | filter:searchQuery |paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-                        <td >{{value.emp_id}}</td>
-                        <td >{{value.emp_name}}</td>
+
+                      <tr
+                        *ngFor="let value of res | filter:searchQuery |paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index;">
+                        <td>{{value.emp_id}}</td>
+                        <td>{{value.emp_name}}</td>
                         <td>{{value.emp_email}}</td>
-                        <td >{{value.emp_contact_details}}</td>
-                        <td >{{value.emp_designation}}</td>
-                        <td >{{value.emp_role}}</td>
-                        <td >{{value.technology}}</td>
-                        <td >{{value.totalSalaryPayOut}}</td>
+                        <td>{{value.emp_contact_details}}</td>
+                        <td>{{value.emp_designation}}</td>
+                        <td>{{value.emp_role}}</td>
+                        <td>{{value.technology}}</td>
+                        <td>{{value.totalSalaryPayOut}}</td>
                         <td>{{value.basic}}</td>
-                        <td >{{value.HRA}}</td>
+                        <td>{{value.HRA}}</td>
                         <td>{{value.PF}}</td>
-                        <td >{{value.Others}}</td>
+                        <td>{{value.Others}}</td>
                         <td>{{value.extras}}</td>
                         <td>{{value.month}}</td>
                         <td>{{value.year}}</td>
-                        <td><button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">Download</button></td>
+                        <td>
+                          <button (click)="download(value, i)" class="btn text-white"
+                            style="background-color: rgb(23, 174, 3);">
+                            <span *ngIf="!loaderArray[i]">
+                              Download
+                            </span>
+                            <div *ngIf="loaderArray[i]" class="spinner-border" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                          </button>
+                        </td>
                       </tr>
-                      
                     </tbody>
-            
                   </table>
                   <!-- @ kirti soni ( 10/03/23 )  get data using pagination-->
-                  <pagination-controls *ngIf="this.tdata" (pageChange)="page=$event"></pagination-controls>
+                  <pagination-controls *ngIf="this.res" (pageChange)="page=$event"></pagination-controls>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
-     
+      </div>
+
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="container-fluid border border-white " style="height: 100vh;">
- 
-    <div class="row col-xl-8 " >
-        <div class="col mb-5">
-            <select (change)="onChange($event)">
-                <option value="month">Month</option>
-                <option value="year">Year</option>
-              </select>
-              <input type="month" *ngIf="selectedOption === 'month'" (change)="change($event)" >
-            
-              <select *ngIf="selectedOption === 'year'" (change)="selectyear($event)" >
-                <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
-              </select>
-        <input class="col mt-4" type="text" name="Emp_name" placeholder="search employee_name" [(ngModel)]="searchtext" >  
-    </div>
-    </div>
-    <div class="rows border col-xl-8"  >
-        <div class=" row1 border text-center " style=" background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135));"><h5 style="margin: 3vh;">Employee Details</h5></div> -->
-        <!-- @ kirti soni ( 9/03/23 )  get employee details-->
-
-        <!-- <table class="table table-hover  " *ngIf="this.res"  >
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col" *ngFor="let i of header " >{{i}}</th>
-              
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let value of this.res | filter:searchtext |paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-                <td >{{value.emp_id}}</td>
-                <td >{{value.emp_name}}</td>
-                <td>{{value.emp_email}}</td>
-                <td >{{value.emp_contact_details}}</td>
-                <td >{{value.emp_designation}}</td>
-                <td >{{value.emp_role}}</td>
-                <td >{{value.technology}}</td>
-                <td >{{value.totalSalaryPayOut}}</td>
-                <td>{{value.basic}}</td>
-                <td >{{value.HRA}}</td>
-                <td>{{value.PF}}</td>
-                <td >{{value.Others}}</td>
-                <td>{{value.extras}}</td>
-                <td>{{value.month}}</td>
-                <td>{{value.year}}</td>
-              </tr>
-              
-            </tbody>
-    
-          </table>
-          <table class="table table-hover " *ngIf="this.tdata"  >
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col" *ngFor="let i of Header ">{{i}}</th>
-              
-              </tr>
-            </thead>
-            <tbody>
-              <tr  *ngFor="let value of this.tdata | filter:searchtext |paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-                <td >{{value.emp_id}}</td>
-                <td >{{value.emp_name}}</td>
-                <td>{{value.emp_email}}</td>
-                <td >{{value.emp_contact_details}}</td>
-                <td >{{value.emp_designation}}</td>
-                <td >{{value.emp_role}}</td>
-                <td >{{value.technology}}</td>
-                <td >{{value.totalSalaryPayOut}}</td>
-                <td>{{value.basic}}</td>
-                <td >{{value.HRA}}</td>
-                <td>{{value.PF}}</td>
-                <td >{{value.Others}}</td>
-                <td>{{value.extras}}</td>
-                <td>{{value.month}}</td>
-                <td>{{value.year}}</td>
-              </tr>
-              
-            </tbody>
-         
-          </table>
-      
-          <pagination-controls (pageChange)="page=$event" *ngIf="this.tdata"></pagination-controls>
-        
-          <pagination-controls *ngIf="this.res" (pageChange)="page=$event"></pagination-controls>  
-</div>
-</div>
-
- -->

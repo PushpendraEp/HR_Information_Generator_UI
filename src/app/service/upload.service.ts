@@ -5,14 +5,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UploadService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   //<!-- @ Ravi ( 02/03/23 ) upload file api integration -->
-  upload(formData: any) {
+  upload(formData: any, callback: any) {
     this.http
-      .post('http://localhost:3000/uploadFile',formData)
+      .post('http://localhost:3000/uploadFile', formData)
       .subscribe((result: any) => {
-        console.log(formData)
-        console.log('result', result);
-      });
+        if (result.status) {
+          console.log(formData)
+          console.log('result', result);
+          callback(false)
+        }
+      },
+        err => {
+          callback(true)
+        });
   }
 }
