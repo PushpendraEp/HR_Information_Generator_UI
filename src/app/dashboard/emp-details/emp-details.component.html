@@ -1,5 +1,7 @@
 <!-- @ kirti soni ( 6/03/23 )  design of employee detaile-->
 <!-- @ kirti soni ( 7/03/23 )  design of employee details and create month and year selecter -->
+<!-- @ kirti soni ( 10/03/23 )  design of table data gettinh from api and show table year and month-year based-->
+<!-- @ kirti soni ( 15/03/23 )  design of button for generate payslip-->
 <section class="intro">
   <div class="bg-image h-100 " style="background-color: #f5f7fa;">
     <div class="mask  d-flex align-items-center h-100">
@@ -29,6 +31,7 @@
                     <thead class="bg-dark">
                       <tr>
                         <th scope="col" *ngFor="let i of header " >{{i}}</th>
+                        <th>Download paySlip</th>
                       
                       </tr>
                     </thead>
@@ -50,19 +53,17 @@
                           <td>{{value.extras}}</td>
                           <td>{{value.month}}</td>
                           <td>{{value.year}}</td>
-                          <td><button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">generate</button>
-                          </td> </tr>
-                  
-                     
-                      
+                          <td><button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">Download</button> </td>
+                          </tr>  
                     </tbody>
-            
                   </table>
+                  <!-- @ kirti soni ( 10/03/23 )  get data using pagination-->
                   <pagination-controls *ngIf="this.res" (pageChange)="page=$event"></pagination-controls> 
                   <table class="table table-striped mb-0 text-center" *ngIf="this.tdata"  >
                     <thead class="bg-dark">
                       <tr>
                         <th scope="col" *ngFor="let i of Header " >{{i}}</th>
+                        <th>Download paySlip</th>
                       
                       </tr>
                     </thead>
@@ -83,12 +84,13 @@
                         <td>{{value.extras}}</td>
                         <td>{{value.month}}</td>
                         <td>{{value.year}}</td>
-                        td><button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">generate</button>
+                        <td><button  (click)="download(value)"  class="btn text-white" style="background-color: rgb(23, 174, 3);">Download</button></td>
                       </tr>
                       
                     </tbody>
             
                   </table>
+                  <!-- @ kirti soni ( 10/03/23 )  get data using pagination-->
                   <pagination-controls *ngIf="this.tdata" (pageChange)="page=$event"></pagination-controls>
                 </div>
               </div>

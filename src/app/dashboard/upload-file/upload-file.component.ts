@@ -19,11 +19,13 @@ export class UploadFileComponent {
   months:string |any;
   years: string| any;
   formData: any;
+
+   /* @ kirti soni get data of selection box*/
   selectfile(event: any) {
     this.file = event.target.files[0];
     console.warn(this.file);
   }
- 
+  /* @ kirti soni ( 10/03/23 ) split monthyear field and upload file based on month and year  */
   userdata(userForm: any) {
     let formData = new FormData();
     formData.append('file', this.file);
