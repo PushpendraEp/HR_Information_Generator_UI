@@ -12,7 +12,7 @@ import { UserService } from 'src/app/service/user.service';
 
 export class EmpDetailsComponent {
 
-  showLoader:boolean=false;
+  showLoader: boolean = false;
   loaderArray: any = [];
   searchtext: any;
   itemsPerPage = 10;
@@ -40,7 +40,9 @@ export class EmpDetailsComponent {
     this.user.getData(currentYear).subscribe((data: any) => {
       if (data.status) {
         this.res = data.results
-        this.header = Object.keys(this.res[0])
+        if (this.res && this.res.length > 1) {
+          this.header = Object.keys(this.res[0])
+        }
         this.addLoaderData();
       }
     })
@@ -68,20 +70,24 @@ export class EmpDetailsComponent {
     this.month = this.splitmonthyear[1]
     console.warn(this.year)
     console.warn(this.month)
-    this.showLoader=true;
-    this.user.getmonthyeardata(this.year, this.month).subscribe((result:any) => {
-      if(result.status){
-        this.showLoader=false;
+    this.showLoader = true;
+    this.user.getmonthyeardata(this.year, this.month).subscribe((result: any) => {
+      if (result.status) {
+        this.showLoader = false;
         console.warn(result);
         this.res = result.results;
-        this.header = Object.keys(this.res[0])
+        if (this.res && this.res.length > 1) {
+          this.header = Object.keys(this.res[0])
+        }
         this.addLoaderData();
-      }else{
-        this.showLoader=false;
+      } else {
+        this.showLoader = false;
+        this.res = [];
       }
-     
-    },error=>{
-      this.showLoader=false;
+
+    }, error => {
+      this.showLoader = false;
+      this.res = [];
     })
   }
 
@@ -90,20 +96,24 @@ export class EmpDetailsComponent {
   selectyear(data: any) {
     this.yeardata = data.target.value
     console.warn(this.yeardata)
-    this.showLoader=true;
+    this.showLoader = true;
     this.user.getData(this.yeardata).subscribe(
       (data: any) => {
         if (data.status) {
-          this.showLoader=false;
+          this.showLoader = false;
           this.res = data.results;
-          this.header = Object.keys(this.res[0])
+          if (this.res && this.res.length > 1) {
+            this.header = Object.keys(this.res[0])
+          }
           this.addLoaderData();
           console.log(this.res)
-        }else{
-          this.showLoader=false;
+        } else {
+          this.showLoader = false;
+          this.res = [];
         }
-       
       }, error => {
+        this.showLoader = false;
+        this.res = [];
         console.log(error.error.message)
       })
   };
@@ -115,14 +125,14 @@ export class EmpDetailsComponent {
     console.log(data)
     this.user.downloadfile(data).subscribe((data: any) => {
       // if (data.status) {
-        console.log(data)
-        const blob = new Blob([data], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(blob);
-        window.open(url);
-        this.loaderArray[i] = false;
+      console.log(data)
+      const blob = new Blob([data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+      this.loaderArray[i] = false;
       // }
       // else {
-        // this.loaderArray[i] = false;
+      // this.loaderArray[i] = false;
       // }
     },
       err => {

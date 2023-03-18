@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,11 @@ export class UploadService {
   //<!-- @ Ravi ( 02/03/23 ) upload file api integration -->
   upload(formData: any, callback: any) {
     this.http
-      .post('http://localhost:3000/uploadFile', formData)
+      .post(`${environment.URL}/uploadFile`, formData)
       .subscribe((result: any) => {
         if (result.status) {
-          console.log(formData)
-          console.log('result', result);
+          // console.log(formData)
+          // console.log('result', result);
           callback(false)
         }
       },
