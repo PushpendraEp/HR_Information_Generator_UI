@@ -31,6 +31,7 @@
                   <h5 style="margin: 3vh;">Employee Details</h5>
                 </div>
                 <div class="table-responsive " style="position: relative; height: auto">
+                  <span *ngIf="!showLoader">
                   <table class="table table-striped mb-0 text-center" *ngIf="this.res">
                     <thead class="bg-dark">
                       <tr>
@@ -72,6 +73,12 @@
                       </tr>
                     </tbody>
                   </table>
+                </span>
+                <div  class="d-flex justify-content-center">
+                  <div *ngIf="showLoader" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
                   <!-- @ kirti soni ( 10/03/23 )  get data using pagination-->
                   <pagination-controls *ngIf="this.res" (pageChange)="page=$event"></pagination-controls>
 

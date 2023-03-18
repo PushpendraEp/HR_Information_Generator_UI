@@ -1,13 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UploadService } from 'src/app/service/upload.service';
+import{ToastComponent} from '../toast/toast.component';
 
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
-  styleUrls: ['./upload-file.component.css']
+  styleUrls: ['./upload-file.component.css'],
+  providers: [ToastComponent]
 })
 export class UploadFileComponent {
-
+  // @ViewChild('toast') toast: ElementRef | undefine
+  // @ViewChild('app-toast', { static: false }) toastComponent!: ToastComponent;
+  // @ViewChild('toast', { static: true }) toast!: ToastComponent;
+  @ViewChild(ToastComponent) toastComponent!: ToastComponent;
+  // @ViewChild(ToastComponent, { static: false })
+  // toastComponent!: ToastComponent;
+  // @ViewChild(ToastComponent, { static: false })
+  // toastComponent!: ToastComponent;
   uploadLoader: boolean = false;
   /* @ kirti soni ( 7/03/23 ) upload file data in database from api*/
   month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -45,10 +54,28 @@ export class UploadFileComponent {
       }
       else {
         this.uploadLoader = false;
+        setTimeout(() => {
+          this.toastComponent.showToast();
+        }, 0);
       }
+     
+      // if (this.toastComponent) {
+      //   this.toastComponent.showToast();
+      // }
     });
+    
   }
-
+  // showToast() {
+  //   if (this.toast && this.toast.nativeElement) {
+  //     const toast = this.toast.nativeElement;
+  //     if (!toast.classList.contains('show')) {
+  //       toast.classList.add('show');
+  //       setTimeout(() => {
+  //         toast.classList.remove('show');
+  //       }, 3000);
+  //     }
+  //   }
+  // }
 
 
 }

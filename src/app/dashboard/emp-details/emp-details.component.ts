@@ -12,7 +12,7 @@ import { UserService } from 'src/app/service/user.service';
 
 export class EmpDetailsComponent {
 
-
+  showLoader:boolean=false;
   loaderArray: any = [];
   searchtext: any;
   itemsPerPage = 10;
@@ -68,11 +68,20 @@ export class EmpDetailsComponent {
     this.month = this.splitmonthyear[1]
     console.warn(this.year)
     console.warn(this.month)
-    this.user.getmonthyeardata(this.year, this.month).subscribe(result => {
-      console.warn(result)
-      this.res = result;
-      this.header = Object.keys(result[0])
-      this.addLoaderData();
+    this.showLoader=true;
+    this.user.getmonthyeardata(this.year, this.month).subscribe((result:any) => {
+      if(result.status){
+        this.showLoader=false;
+        console.warn(result);
+        this.res = result.results;
+        this.header = Object.keys(this.res[0])
+        this.addLoaderData();
+      }else{
+        this.showLoader=false;
+      }
+     
+    },error=>{
+      this.showLoader=false;
     })
   }
 
@@ -81,19 +90,19 @@ export class EmpDetailsComponent {
   selectyear(data: any) {
     this.yeardata = data.target.value
     console.warn(this.yeardata)
-
+    this.showLoader=true;
     this.user.getData(this.yeardata).subscribe(
       (data: any) => {
         if (data.status) {
+          this.showLoader=false;
           this.res = data.results;
-          // const id = this.res.forEach((element: any) => {
-          //   console.log(element.emp_id)
-
-          // });
+          this.header = Object.keys(this.res[0])
+          this.addLoaderData();
+          console.log(this.res)
+        }else{
+          this.showLoader=false;
         }
-        this.header = Object.keys(this.res[0])
-        this.addLoaderData();
-        console.log(this.res)
+       
       }, error => {
         console.log(error.error.message)
       })

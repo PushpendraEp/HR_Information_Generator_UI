@@ -13,6 +13,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 // import { PipiPipe } from '../pipi.pipe';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { ToastComponent } from './toast/toast.component';
 
 
 @NgModule({
@@ -24,10 +25,11 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
     EmpDetailsComponent,
     UploadFileComponent,
     MyProfileComponent,
-    
+    ToastComponent
 
    
   ],
+  entryComponents: [ToastComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
