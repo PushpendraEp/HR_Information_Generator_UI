@@ -1,18 +1,16 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { UploadService } from 'src/app/service/upload.service';
-import{ToastComponent} from '../toast/toast.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.css'],
-  providers: [ToastComponent]
 })
 export class UploadFileComponent {
   // @ViewChild('toast') toast: ElementRef | undefine
   // @ViewChild('app-toast', { static: false }) toastComponent!: ToastComponent;
   // @ViewChild('toast', { static: true }) toast!: ToastComponent;
-  @ViewChild(ToastComponent) toastComponent!: ToastComponent;
   // @ViewChild(ToastComponent, { static: false })
   // toastComponent!: ToastComponent;
   // @ViewChild(ToastComponent, { static: false })
@@ -20,7 +18,14 @@ export class UploadFileComponent {
   uploadLoader: boolean = false;
   /* @ kirti soni ( 7/03/23 ) upload file data in database from api*/
   month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: UploadService, public toastr: ToastrService) {
+    setTimeout(() => {
+      this.toastr.success('This is a Snackbar notification!', 'Success', {
+        timeOut: 3000,
+        progressBar: true
+      });
+    }, 1000);
+  }
   monthyear_array: any
   selectedMonthNumber: any
   selectMonths: any
@@ -55,15 +60,15 @@ export class UploadFileComponent {
       else {
         this.uploadLoader = false;
         setTimeout(() => {
-          this.toastComponent.showToast();
+
         }, 0);
       }
-     
+
       // if (this.toastComponent) {
       //   this.toastComponent.showToast();
       // }
     });
-    
+
   }
   // showToast() {
   //   if (this.toast && this.toast.nativeElement) {

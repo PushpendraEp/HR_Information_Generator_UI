@@ -9,11 +9,9 @@ import { DashboardSelecterComponent } from './dashboard-selecter/dashboard-selec
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-// import { PipiPipe } from '../pipi.pipe';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-import { ToastComponent } from './toast/toast.component';
 
 
 @NgModule({
@@ -25,16 +23,14 @@ import { ToastComponent } from './toast/toast.component';
     EmpDetailsComponent,
     UploadFileComponent,
     MyProfileComponent,
-    ToastComponent
-
-   
   ],
-  entryComponents: [ToastComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
-    Ng2SearchPipeModule,NgxPaginationModule,Ng2FilterPipeModule
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    Ng2FilterPipeModule
   ]
 })
 export class DashboardModule { }
