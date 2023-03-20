@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user.service';
@@ -14,7 +15,7 @@ export class MyProfileComponent {
   isEditing: boolean = false;
   updateLoader: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public toastr: ToastrService) { }
 
   ngOnInit() {
     this.userService.admin_Details().pipe(
@@ -45,6 +46,10 @@ export class MyProfileComponent {
     this.userService.updateData(this.admindata).pipe(
       catchError(error => {
         this.updateLoader = false;
+        this.toastr.error('User Details Not updateded', 'Failed', {
+          timeOut: 3000,
+          progressBar: true
+        });
         console.log(error.error.message);
         return of(null);
       })
@@ -53,6 +58,11 @@ export class MyProfileComponent {
         // console.log(data)
         this.updateLoader = false;
         this.isEditMode = false;
+       
+          this.toastr.success('Update Successful!!!', 'Success', {
+            timeOut: 3000,
+            progressBar: true,
+          });
       }
       else {
         this.updateLoader = false;
