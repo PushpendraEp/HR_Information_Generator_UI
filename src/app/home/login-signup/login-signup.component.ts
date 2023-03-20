@@ -31,13 +31,12 @@ export class LoginSignupComponent {
       catchError(error => {
         this.loginError = error.error.message;
         this.loginLoader = false;
-        setTimeout(() => {
+       
           this.toastr.error('Login Failed!!!', 'Falied', {
             timeOut: 3000,
             progressBar: true,
             
-          });
-        }, 1000);
+          })
         return of(null);
       })
     ).subscribe((result: any) => {
