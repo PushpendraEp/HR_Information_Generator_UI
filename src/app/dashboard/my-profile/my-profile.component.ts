@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user.service';
@@ -14,7 +15,7 @@ export class MyProfileComponent {
   isEditing: boolean = false;
   updateLoader: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public toastr: ToastrService) { }
 
   ngOnInit() {
     this.userService.admin_Details().pipe(
@@ -24,7 +25,8 @@ export class MyProfileComponent {
       })
     )
     .subscribe((data:any) => {
-      if(data && data.status){    
+      if(data && data.status){  
+       
         this.admindata = data.results;
         this.admindata[0].DOB = this.admindata[0].DOB.slice(0, 10);
       }
@@ -45,6 +47,11 @@ export class MyProfileComponent {
     this.userService.updateData(this.admindata).pipe(
       catchError(error => {
         this.updateLoader = false;
+        this.toastr.error('Error In Uploading File', 'Failed', {
+          timeOut: 3000,
+          progressBar: true
+          
+        });
         console.log(error.error.message);
         return of(null);
       })
@@ -52,6 +59,10 @@ export class MyProfileComponent {
       if (data && data.status) {
         // console.log(data)
         this.updateLoader = false;
+        this.toastr.success('File Upload Successful!!!', 'Success', {
+          timeOut: 3000,
+          progressBar: true,
+        });  
         this.isEditMode = false;
       }
       else {
