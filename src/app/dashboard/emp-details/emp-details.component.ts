@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user.service';
-
 
 @Component({
   selector: 'app-emp-details',
@@ -8,7 +9,6 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./emp-details.component.css']
 
 })
-
 
 export class EmpDetailsComponent {
 
@@ -18,8 +18,7 @@ export class EmpDetailsComponent {
   itemsPerPage = 10;
   page = 1;
   // <!-- @ kirti soni ( 7/03/23 ) function for year and month selecter   -->
-  constructor(private user: UserService
-  ) { }
+  constructor(private user: UserService) { }
   searchQuery: any
 
   year: string | any;
@@ -36,9 +35,14 @@ export class EmpDetailsComponent {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const current = currentYear - 1;
-    console.log(current)
-    this.user.getData(currentYear).subscribe((data: any) => {
-      if (data.status) {
+    this.user.getData(currentYear).pipe(
+      catchError(error => {
+        this.res = [];
+        console.log(error.error.message);
+        return of(null);
+      })
+    ).subscribe((data: any) => {
+      if (data && data.status) {
         this.res = data.results
         if (this.res && this.res.length > 1) {
           this.header = Object.keys(this.res[0])
@@ -68,13 +72,19 @@ export class EmpDetailsComponent {
     this.splitmonthyear = this.monthyear.split('-')
     this.year = this.splitmonthyear[0]
     this.month = this.splitmonthyear[1]
-    console.warn(this.year)
-    console.warn(this.month)
     this.showLoader = true;
-    this.user.getmonthyeardata(this.year, this.month).subscribe((result: any) => {
-      if (result.status) {
+    this.user.getmonthyeardata(this.year, this.month).pipe(
+      catchError(error => {
         this.showLoader = false;
-        console.warn(result);
+        this.res = [];
+        console.log(error.error.message);
+        return of(null);
+      })
+    )
+    .subscribe((result: any) => {
+      if (result && result.status) {
+        this.showLoader = false;
+        // console.warn(result);
         this.res = result.results;
         if (this.res && this.res.length > 1) {
           this.header = Object.keys(this.res[0])
@@ -84,10 +94,6 @@ export class EmpDetailsComponent {
         this.showLoader = false;
         this.res = [];
       }
-
-    }, error => {
-      this.showLoader = false;
-      this.res = [];
     })
   }
 
@@ -95,26 +101,30 @@ export class EmpDetailsComponent {
   header: string[] | undefined
   selectyear(data: any) {
     this.yeardata = data.target.value
-    console.warn(this.yeardata)
+    // console.warn(this.yeardata)
     this.showLoader = true;
-    this.user.getData(this.yeardata).subscribe(
+    this.user.getData(this.yeardata).pipe(
+      catchError(error => {
+        this.showLoader = false;
+        this.res = [];
+        console.log(error.error.message);
+        return of(null);
+      })
+    )
+    .subscribe(
       (data: any) => {
-        if (data.status) {
+        if (data && data.status) {
           this.showLoader = false;
           this.res = data.results;
           if (this.res && this.res.length > 1) {
             this.header = Object.keys(this.res[0])
           }
           this.addLoaderData();
-          console.log(this.res)
+          // console.log(this.res)
         } else {
           this.showLoader = false;
           this.res = [];
         }
-      }, error => {
-        this.showLoader = false;
-        this.res = [];
-        console.log(error.error.message)
       })
   };
 
@@ -122,30 +132,16 @@ export class EmpDetailsComponent {
 
   download(data: string, i: number) {
     this.loaderArray[i] = true;
-    console.log(data)
-    this.user.downloadfile(data).subscribe((data: any) => {
-      // if (data.status) {
-      console.log(data)
+    this.user.downloadfile(data).pipe(
+      catchError(error => {
+        console.log(error.error.message);
+        return of(null);
+      })
+    ).subscribe((data: any) => {
       const blob = new Blob([data], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
       this.loaderArray[i] = false;
-      // }
-      // else {
-      // this.loaderArray[i] = false;
-      // }
-    },
-      err => {
-        this.loaderArray[i] = false;
-      })
+    })
   }
 }
-
-
-
-
-
-
-
-
-

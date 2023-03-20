@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
-import { NgForm } from '@angular/forms'
-
-import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/service/user.service';
 import { Router, Routes } from '@angular/router';
-import jwt_decode from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login-signup',
@@ -16,7 +14,7 @@ export class LoginSignupComponent {
   loginLoader: boolean = false;
   decodetoken: any;
   loginError: String | undefined;
-  constructor(private userService: UserService, private route: Router) { }
+  constructor(private userService: UserService, private route: Router, public toastr: ToastrService) { }
   ngOnInit() {
     if (this.userService.IsLoggedIn()) {
       this.route.navigate(['dashboard'])
@@ -28,24 +26,32 @@ export class LoginSignupComponent {
   //<!-- @ kirti ( 28/02/23 ) login api integration and show error message-->
   userLogin(data: any) {
     this.loginLoader = true;
-    console.log(data)
-    this.userService.login(data).subscribe((result: any) => {
-      if (result.status) {
+    // console.log(data)
+    this.userService.login(data).pipe(
+      catchError(error => {
+        this.loginError = error.error.message;
+        this.loginLoader = false;
+        setTimeout(() => {
+          this.toastr.error('Login Failed!!!', 'Falied', {
+            timeOut: 3000,
+            progressBar: true,
+            
+          });
+        }, 1000);
+        return of(null);
+      })
+    ).subscribe((result: any) => {
+      if (result && result.status) {
         this.loginLoader = false;
         localStorage.setItem("token", result.token)
-        console.log(result.token)
+        // console.log(result.token)
         this.route.navigate(['/dashboard'])
+       
       }
       else {
         console.log('Error in login --->>>>');
         this.loginLoader = false;
       }
-    },
-      (err: any) => {
-        this.loginError = err.error.message;
-        this.loginLoader = false;
-      })
-
-
+    })
   }
 }

@@ -20,6 +20,7 @@ export class UploadService {
       },
         err => {
           callback(true)
+          console.log(err.error.message)
         });
   }
 }

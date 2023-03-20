@@ -7,11 +7,11 @@
 /* Toaster Classes Start */
 
 .toast-container {
-    background-image: linear-gradient(purple, red) !important;
-    border-radius: 22px !important;
+    /* background-image: linear-gradient(rgb(0, 128, 9), rgb(0, 255, 0)) !important; */
+    /* border-radius: 22px !important;
     box-shadow: -5px 8px 16px 0px rgba(0, 0, 0, 0.3) !important;
-    margin-bottom: 2px !important;
-    top: 20px;
+    margin-bottom: 2px !important; */
+    top: 30px;
     right: 10px;
 }
 
@@ -23,41 +23,51 @@
 }
 
 .toast-success {
-    background-image: none !important;
+    background-image: linear-gradient(rgb(0, 128, 9), rgb(24, 168, 24)) !important;
+    border-radius: 22px !important;
+    box-shadow: -5px 8px 16px 0px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 2px !important;
+    padding: 30px;
 }
 
 .toast-success::after {
-    content: '\f00c' !important;
+    /* content: '\f00c' !important; */
+    /* background-image: linear-gradient(rgb(0, 128, 9), rgb(0, 255, 0)) !important; */
+    background-color: forestgreen;
     font-family: 'FontAwesome' !important;
     position: absolute !important;
     top: 14px !important;
     left: 15px !important;
-    color: #333 !important;
-    font-size: 1.5em !important;
+    color: #f9f5f5 !important;
+    font-size: 6.5em !important;
 }
 
 .toast-error {
-    background-image: none !important;
-    padding: 200px;
+    /* background-image: none !important; */
+    background-image: linear-gradient(rgb(248, 59, 17), rgb(255, 38, 0)) !important;
+    border-radius: 22px !important;
+    box-shadow: -5px 8px 16px 0px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 2px !important;
+    padding: 30px;
 }
 
 .toast-error::after {
-    content: '\f00c' !important;
+    /* content: '\f00c' !important; */
     font-family: 'FontAwesome' !important;
     position: absolute !important;
     top: 14px !important;
     left: 15px !important;
-    color: #333 !important;
-    font-size: 1.5em !important;
+    color: #fdf9f9 !important;
+    font-size: 6.5em !important;
 }
 
 .toast-title {
-    color: purple !important;
-    font-size: 16px !important;
+    color: rgb(247, 243, 247) !important;
+    font-size: 20px !important;
 }
 
 .toast-message {
-    color: #8f8f8f !important;
+    color: #faf8f8 !important;
 }
 
 /* Toaster Classes End */
