@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +20,7 @@ export class UserService {
 
   //<!-- @ kirti ( 28/02/23 )add authgaurd  -->
   login(data: any) {
-    return this.http.post("${environment.URL}/loginUser", data)
+    return this.http.post(`${environment.URL}/loginUser`, data)
   }
 
   //  @ kirti soni ( 13/03/23 )  api integration for getting admin details
@@ -29,8 +28,6 @@ export class UserService {
     const gettoken = localStorage.getItem('token')
 
     return this.http.get(`${environment.URL}/User?token=${gettoken}`);
-
-
   }
   //  @ kirti soni ( 14/03/23 ) api integration for admindetails update details
   updateData(data: any): Observable<any> {
@@ -47,14 +44,10 @@ export class UserService {
     return this.http.get(`${environment.URL}/payslip?emp_id=${selectedId}&month=${selectedMonth}&year=${selectedYear}`, { responseType: 'blob' })
   }
 
-
-
-
   //  @ kirti soni ( 8/03/23 ) api integration for geeting data bsed on year
 
   public getData(yeardata: any): Observable<any[]> {
     const selectedYear = yeardata;
-    // console.log(selectedYear);
 
     const url = `${environment.URL}/getEmployeeData?year=${selectedYear}`;
     return this.http.get<any[]>(url);
@@ -65,24 +58,14 @@ export class UserService {
   public getmonthyeardata(year: string, month: string): Observable<any[]> {
     const selectedYear = year;
     const selectedMonth = month;
-    // console.log(selectedYear);
-    // console.log(selectedMonth);
-
-
-
     const url = `${environment.URL}/getEmployeeData?month=${selectedMonth}&year=${selectedYear}`;
     return this.http.get<any[]>(url);
   }
-
-
 
   /* @ kirti soni ( 9/03/23 ) is token available or not function for authgaurd */
 
   IsLoggedIn() {
     return !!localStorage.getItem('token');
   }
-
-
-
 
 }

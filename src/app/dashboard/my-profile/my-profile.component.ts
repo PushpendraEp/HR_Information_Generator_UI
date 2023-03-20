@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -17,12 +17,17 @@ export class MyProfileComponent {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.admin_Details().subscribe(data => {
-      this.admindata = data
-      this.admindata[0].DOB = this.admindata[0].DOB.slice(0, 10);
-      console.log(this.admindata)
-    }, error => {
-      console.log(error.error.message)
+    this.userService.admin_Details().pipe(
+      catchError(error => {
+        console.log(error.error.message);
+        return of(null);
+      })
+    )
+    .subscribe((data:any) => {
+      if(data && data.status){    
+        this.admindata = data.results;
+        this.admindata[0].DOB = this.admindata[0].DOB.slice(0, 10);
+      }
     })
 
   }
@@ -36,20 +41,23 @@ export class MyProfileComponent {
   //  @ kirti soni ( 14/03/23 )  update admindetails
   update() {
     this.updateLoader = true;
-    console.log(this.admindata[0])
-    this.userService.updateData(this.admindata).subscribe(data => {
-      if (data.status) {
-        console.log(data)
+    // console.log(this.admindata[0])
+    this.userService.updateData(this.admindata).pipe(
+      catchError(error => {
+        this.updateLoader = false;
+        console.log(error.error.message);
+        return of(null);
+      })
+    ).subscribe(data => {
+      if (data && data.status) {
+        // console.log(data)
+        this.updateLoader = false;
         this.isEditMode = false;
       }
       else {
         this.updateLoader = false;
       }
-    }, err => {
-      this.updateLoader = false;
     })
 
   }
-
-
 }

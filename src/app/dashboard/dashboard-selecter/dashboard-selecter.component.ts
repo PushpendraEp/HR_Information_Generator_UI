@@ -13,17 +13,4 @@ export class DashboardSelecterComponent {
   data:any[] | undefined;
   selectedYear: any
 tablelist:any[] |undefined
-
-
-
 }
-
-
-
-
-
-
-
-
-  
-
