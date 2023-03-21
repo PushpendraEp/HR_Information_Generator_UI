@@ -47,19 +47,23 @@ export class MyProfileComponent {
     this.userService.updateData(this.admindata).pipe(
       catchError(error => {
         this.updateLoader = false;
-        this.toastr.error('Error In Uploading File', 'Failed', {
+        console.log(error.error.message);
+        
+        this.toastr.error(`${error.error.message}`, 'Failed', {
           timeOut: 3000,
           progressBar: true
           
         });
-        console.log(error.error.message);
+        // console.log(error.error.message);
         return of(null);
       })
     ).subscribe(data => {
       if (data && data.status) {
         // console.log(data)
         this.updateLoader = false;
-        this.toastr.success('File Upload Successful!!!', 'Success', {
+        // console.log(data.message);
+        
+        this.toastr.success(`${data.message}`, 'Success', {
           timeOut: 3000,
           progressBar: true,
         });  
