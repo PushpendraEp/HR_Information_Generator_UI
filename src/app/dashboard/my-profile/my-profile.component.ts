@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
@@ -21,6 +22,7 @@ export class MyProfileComponent {
     this.userService.admin_Details().pipe(
       catchError(error => {
         console.log(error.error.message);
+      
         return of(null);
       })
     )

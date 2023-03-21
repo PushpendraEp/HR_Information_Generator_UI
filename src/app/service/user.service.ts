@@ -4,10 +4,13 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   canActivate() {
     throw new Error('Method not implemented.');
   }
@@ -67,5 +70,6 @@ export class UserService {
   IsLoggedIn() {
     return !!localStorage.getItem('token');
   }
+
 
 }
