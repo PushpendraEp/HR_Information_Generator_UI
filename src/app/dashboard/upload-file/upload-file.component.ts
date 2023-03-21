@@ -40,20 +40,9 @@ export class UploadFileComponent {
     this.uploadService.upload(formData, (err: boolean) => {
       if (err) {
         this.uploadLoader = false;
-          this.toastr.error('Error In Uploading File', 'Failed', {
-            timeOut: 3000,
-            progressBar: true
-            
-          });
-      
       }
       else {
         this.uploadLoader = false;
-      
-          this.toastr.success('File Upload Successful!!!', 'Success', {
-            timeOut: 3000,
-            progressBar: true,
-          });
         userForm.reset();
       }
     });

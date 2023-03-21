@@ -29,9 +29,10 @@ export class LoginSignupComponent {
     // console.log(data)
     this.userService.login(data).pipe(
       catchError(error => {
-        this.loginError = error.error.message;
+        this.loginError = error.error.message; 
         this.loginLoader = false;
-          this.toastr.error('Login Failed!!!', 'Falied', {
+        
+          this.toastr.error(`${this.loginError}`, 'Falied', {
             timeOut: 3000,
             progressBar: true,
             
@@ -49,6 +50,8 @@ export class LoginSignupComponent {
       }
       else {
         console.log('Error in login --->>>>');
+        console.log(result);
+        
         this.loginLoader = false;
       }
     })
