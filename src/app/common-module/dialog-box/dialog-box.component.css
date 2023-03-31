@@ -1,0 +1,51 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:grey;
+  }
+   .dialog-container {
+      display: inline;
+      justify-content: center;
+      align-items: center;
+    }
+     
+.custom-title {
+    color: white;
+    background-color: #3f51b5;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .custom-content {
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .custom-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  button{
+    margin: 8px;
+    width: 40%;
+    height: 30%;
+  }
+
+    
+   
+/* 
+     .full-screen-modal .mat-dialog-container {
+      padding: 1em;
+      width: 40%;
+      height: 60%;
+      align-items: center;
+      text-align: center;
+      background-color: coral;
+      
+    } */

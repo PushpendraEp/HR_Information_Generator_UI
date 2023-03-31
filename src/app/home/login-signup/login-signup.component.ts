@@ -4,6 +4,7 @@ import { Router, Routes } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { DialogService } from 'src/app/service/dialog.service'
 
 @Component({
   selector: 'app-login-signup',
@@ -14,7 +15,7 @@ export class LoginSignupComponent {
   loginLoader: boolean = false;
   decodetoken: any;
   loginError: String | undefined;
-  constructor(private userService: UserService, private route: Router, public toastr: ToastrService) { }
+  constructor(private userService: UserService, private route: Router, public toastr: ToastrService, private dialog: DialogService) { }
   ngOnInit() {
     if (this.userService.IsLoggedIn()) {
       this.route.navigate(['dashboard'])
@@ -31,12 +32,12 @@ export class LoginSignupComponent {
       catchError(error => {
         this.loginError = error.error.message; 
         this.loginLoader = false;
-        
-          this.toastr.error(`${this.loginError}`, 'Falied', {
-            timeOut: 3000,
-            progressBar: true,
+        this.dialog.showMessage(`Failed: ${this.loginError}`,false);
+          // this.toastr.error(`${this.loginError}`, 'Falied', {
+          //   timeOut: 3000,
+          //   progressBar: true,
             
-          });
+          // });
        
         return of(null);
       })
@@ -56,4 +57,6 @@ export class LoginSignupComponent {
       }
     })
   }
+   
+  
 }

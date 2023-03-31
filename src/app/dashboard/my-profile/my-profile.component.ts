@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { DialogService } from 'src/app/service/dialog.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class MyProfileComponent {
   isEditing: boolean = false;
   updateLoader: boolean = false;
 
-  constructor(private userService: UserService, public toastr: ToastrService) { }
+  constructor(private userService: UserService, public toastr: ToastrService, private dialogService: DialogService) { }
 
   ngOnInit() {
     this.userService.admin_Details().pipe(
@@ -48,12 +49,12 @@ export class MyProfileComponent {
       catchError(error => {
         this.updateLoader = false;
         console.log(error.error.message);
-        
-        this.toastr.error(`${error.error.message}`, 'Failed', {
-          timeOut: 3000,
-          progressBar: true
+        this.dialogService.showMessage(`Failed: ${error.error.message}`, false);
+        // this.toastr.error(`${error.error.message}`, 'Failed', {
+        //   timeOut: 3000,
+        //   progressBar: true
           
-        });
+        // });
         // console.log(error.error.message);
         return of(null);
       })
@@ -63,10 +64,17 @@ export class MyProfileComponent {
         this.updateLoader = false;
         // console.log(data.message);
         
-        this.toastr.success(`${data.message}`, 'Success', {
-          timeOut: 3000,
-          progressBar: true,
-        });  
+        // this.toastr.success(`${data.message}`, 'Success', {
+        //   timeOut: 3000,
+        //   progressBar: true,
+        // });  
+          const message = 'Are you sure you want to update?';
+           const title = 'Profile Updation';
+          this.dialogService.open(message, title).subscribe(result => {
+            if (result) {
+              this.dialogService.showMessage(`Success: ${data.message}`, true);
+            }  
+          });
         this.isEditMode = false;
       }
       else {
@@ -75,4 +83,15 @@ export class MyProfileComponent {
     })
 
   }
+  // openDialogBox() {
+  //   const data:any='';
+  //   const message = 'Are you sure you want to update?';
+  //   const title = 'Profile Updation';
+  //   this.dialogService.open(message, title).subscribe(result => {
+  //     if (result) {
+  //       this.update();
+  //     }
+     
+  //   });
+  // }
 }
