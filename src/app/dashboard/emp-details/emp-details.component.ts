@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { DialogService } from 'src/app/service/dialog.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class EmpDetailsComponent {
   itemsPerPage = 10;
   page = 1;
   // <!-- @ kirti soni ( 7/03/23 ) function for year and month selecter   -->
-  constructor(private user: UserService) { }
+  constructor(private user: UserService, private dialogService: DialogService) { }
   searchQuery: any
 
   year: string | any;
@@ -138,10 +139,32 @@ export class EmpDetailsComponent {
         return of(null);
       })
     ).subscribe((data: any) => {
+      if(data){
+        const message = 'Are you sure you want to download?';
+    const title = 'Download Confirmation';
+    this.dialogService.open(message, title).subscribe(result => {
+    if(result){
       const blob = new Blob([data], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
+    }
+     
+    });
+   }
+      
       this.loaderArray[i] = false;
     })
   }
+
+  // openDialogBox(value:any, i:number) {
+  //   const data:any='';
+  //   const message = 'Are you sure you want to download?';
+  //   const title = 'Download Confirmation';
+  //   this.dialogService.open(message, title).subscribe(result => {
+  //     if (result) {
+  //       this.download(value,i);
+  //     }
+     
+  //   });
+  // }
 }

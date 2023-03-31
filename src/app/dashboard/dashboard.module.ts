@@ -12,7 +12,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModuleModule } from '../common-module/common-module.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
     FormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    Ng2FilterPipeModule
+    Ng2FilterPipeModule,
+    MatDialogModule,
+    CommonModuleModule
   ]
 })
 export class DashboardModule { }
