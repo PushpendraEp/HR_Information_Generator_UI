@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { DialogService } from 'src/app/service/dialog.service';
 import { UserService } from 'src/app/service/user.service';
 import { DatePipe } from '@angular/common';
+import { CommonService } from 'src/app/service/common.service';
 
 
 @Component({
@@ -23,48 +24,75 @@ export class EmpDetailsComponent {
   searchtext: any;
   itemsPerPage = 10;
   page = 1;
- 
+  searchFilterColumns: string[] = [];
+  searchFilterValues: string[] = [];
+
   // <!-- @ kirti soni ( 7/03/23 ) function for year and month selecter   -->
-  constructor(private user: UserService, private dialogService: DialogService) { }
+  constructor(private user: UserService, private dialogService: DialogService, private commonService: CommonService) { }
   searchQuery: any
-  searchText:any='';
+  searchText: any = '';
   year: string | any;
   month: number | any;
   monthyear: any
   splitmonthyear: any
-  header: string[] |any| undefined
+  header: string[] | any | undefined
   selectedOption: string = 'month';
   yearList = [2020, 2021, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
   currentYear: any
   yeardata: any
-  res: any
+  res: any;
+  resTableDataCopy: any;
 
-  monthToString(month: number) {
-    const date = new Date(Date.UTC(2023, month - 1, 1));
-    return this.datePipe.transform(date, 'MMMM');
-  }
- 
+  // monthToString(month: number) {
+  //   const date = new Date(Date.UTC(2023, month - 1, 1));
+  //   return this.datePipe.transform(date, 'MMMM');
+  // }
+
+  /*
+
+    @ Kirti ( 05/04/23 )
+    Function Name - filterData
+    req_param - search string, column name
+    expected_outcome - it will filter according to search string
+
+  */
+
   filterData(search: any, column: any) {
-  
-    console.log(search)
-    if (!search) {
-      search=''
-    } 
+    let isColumExists = this.searchFilterColumns.includes(column);
 
-      this.res = this.res.filter((row :any)=>{
-        // const date = new Date(Date.UTC(2023, row.month - 1, 1));
-        // row.month= this.datePipe.transform(date, 'MMMM');
-      //  row.month=this.monthToString(row.month)
-      console.log(row[column])
-       return row[column].toLowerCase().match(search.toLowerCase())}
-
-      );
+    if (isColumExists) { // ( 05/04/12 ) If column exists then we will not push it and also update column value
+      let indexOfCurrentCol = this.searchFilterColumns.findIndex(element => element == column);
+      this.searchFilterValues[indexOfCurrentCol] = search;
     }
-  
-  
+    else {   // ( 05/04/12 ) If column exists then we will push it and also push column value in ${searchFilterValues}
+      this.searchFilterColumns.push(column);
+      this.searchFilterValues.push(search);
+    }
 
-  
-  
+    this.res = [];
+    let shouldNotPush: number = 0;
+    for (let resIndex = 0; resIndex < this.resTableDataCopy.length; resIndex++) {
+      for (let searchColumnIndex = 0; searchColumnIndex < this.searchFilterColumns.length; searchColumnIndex++) { // ( 05/04/23 ) Will search each and every column with key
+        let searchString = this.resTableDataCopy[resIndex][this.searchFilterColumns[searchColumnIndex]];
+        if(this.searchFilterColumns[searchColumnIndex] == "emp_id") {
+          searchString = String(this.resTableDataCopy[resIndex][this.searchFilterColumns[searchColumnIndex]]);
+        }
+        let isValueExists = searchString.toUpperCase().indexOf(this.searchFilterValues[searchColumnIndex].toUpperCase()) > -1;
+        if (!isValueExists) {
+          shouldNotPush++;
+        }
+      }
+      if (shouldNotPush == 0) {
+        this.res.push(this.resTableDataCopy[resIndex]);
+      }
+      shouldNotPush = 0;
+    }
+
+  }
+
+
+
+
   datePipe = new DatePipe('en-US');
 
   ngOnInit() {
@@ -74,16 +102,18 @@ export class EmpDetailsComponent {
     this.user.getData(currentYear).pipe(
       catchError(error => {
         this.res = [];
+        this.resTableDataCopy = [];
         console.log(error.error.message);
         return of(null);
       })
     ).subscribe((data: any) => {
 
       if (data && data.status) {
-        this.res = data.results
-     
+        this.res = data.results;
+        this.res = this.commonService.changeMonthType(this.res, 'number to month');
+        this.resTableDataCopy = this.res;
         if (this.res && this.res.length > 1) {
-          this.header = Object.keys(this.res[0])
+          this.header = Object.keys(this.res[0]);
         }
         this.addLoaderData();
       }
@@ -115,24 +145,27 @@ export class EmpDetailsComponent {
       catchError(error => {
         this.showLoader = false;
         this.res = [];
+        this.resTableDataCopy = [];
         console.log(error.error.message);
         return of(null);
       })
     )
-    .subscribe((result: any) => {
-      if (result && result.status) {
-        this.showLoader = false;
-        // console.warn(result);
-        this.res = result.results;
-        if (this.res && this.res.length > 1) {
-          this.header = Object.keys(this.res[0])
+      .subscribe((result: any) => {
+        if (result && result.status) {
+          this.showLoader = false;
+          // console.warn(result);
+          this.res = result.results;
+          this.resTableDataCopy = this.res;
+          if (this.res && this.res.length > 1) {
+            this.header = Object.keys(this.res[0])
+          }
+          this.addLoaderData();
+        } else {
+          this.showLoader = false;
+          this.res = [];
+          this.resTableDataCopy = [];
         }
-        this.addLoaderData();
-      } else {
-        this.showLoader = false;
-        this.res = [];
-      }
-    })
+      })
   }
 
   // <!-- @ kirti soni ( 9/03/23 )  get employee data from api bbased on year-->
@@ -145,25 +178,28 @@ export class EmpDetailsComponent {
       catchError(error => {
         this.showLoader = false;
         this.res = [];
+        this.resTableDataCopy = [];
         console.log(error.error.message);
         return of(null);
       })
     )
-    .subscribe(
-      (data: any) => {
-        if (data && data.status) {
-          this.showLoader = false;
-          this.res = data.results;
-          if (this.res && this.res.length > 1) {
-            this.header = Object.keys(this.res[0])
+      .subscribe(
+        (data: any) => {
+          if (data && data.status) {
+            this.showLoader = false;
+            this.res = data.results;
+            this.resTableDataCopy = this.res;
+            if (this.res && this.res.length > 1) {
+              this.header = Object.keys(this.res[0])
+            }
+            this.addLoaderData();
+            // console.log(this.res)
+          } else {
+            this.showLoader = false;
+            this.res = [];
+            this.resTableDataCopy = [];
           }
-          this.addLoaderData();
-          // console.log(this.res)
-        } else {
-          this.showLoader = false;
-          this.res = [];
-        }
-      })
+        })
   };
 
   // <!-- @ kirti soni ( 7/03/23 ) generate payslip   -->
@@ -176,19 +212,19 @@ export class EmpDetailsComponent {
         return of(null);
       })
     ).subscribe((data: any) => {
-      if(data){
+      if (data) {
         const message = 'Are you sure you want to download?';
-    const title = 'Download Confirmation';
-    this.dialogService.open(message, title).subscribe(result => {
-    if(result){
-      const blob = new Blob([data], { type: 'application/pdf' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
-    }
-     
-    });
-   }
-      
+        const title = 'Download Confirmation';
+        this.dialogService.open(message, title).subscribe(result => {
+          if (result) {
+            const blob = new Blob([data], { type: 'application/pdf' });
+            const url = window.URL.createObjectURL(blob);
+            window.open(url);
+          }
+
+        });
+      }
+
       this.loaderArray[i] = false;
     })
   }
@@ -201,7 +237,7 @@ export class EmpDetailsComponent {
   //     if (result) {
   //       this.download(value,i);
   //     }
-     
+
   //   });
   // }
 }
