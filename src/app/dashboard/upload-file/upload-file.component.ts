@@ -51,6 +51,7 @@ export class UploadFileComponent {
       else {
         this.uploadLoader = false;
       }
+      userForm.reset()
     });
   } 
 }

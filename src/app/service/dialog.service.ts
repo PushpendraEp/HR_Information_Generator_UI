@@ -16,11 +16,7 @@ export class DialogService {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       data: { message, title },
       disableClose: false,
-      maxWidth: '30vw',
-      maxHeight: '40vh',
-      height: '20%',
-      width: '50%',
-      panelClass: 'full-with-dialog',
+      
     });
 
     return dialogRef.afterClosed();

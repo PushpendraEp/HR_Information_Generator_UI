@@ -96,8 +96,9 @@ list-style-type: none;
    
 
   }
+  li a.active,
   li:hover{
-    background-color: rgb(161, 216, 221);
+    background-color: rgb(109, 219, 229);
   }
   
   /* a {
@@ -112,3 +113,5 @@ bottom: 0;
   width: 250px;
  
   }
+
+  

@@ -4,6 +4,7 @@
 <!-- @ Ravi ( 28/02/23 ) login api integration -->
 <!-- @ kirti ( 3/02/23 ) design of login page--->
 <!-- @ kirti ( 3/02/23 ) design of login page and validation--->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <section class=" gradient-form " style="background-color: #ede3e3 ; height:100vh;" >
   <div class="container py-5 h-100" >
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -38,8 +39,10 @@
                     
                   <h5 class="form-label" for="form2Example22" style="color: #0d0d0d; font: 20px sans-serif; " >*Password</h5>
                   <div class="form-outline mb-4">
-                    <input type="password" id="Password" name="Password" class="form-control" ngModel #Password="ngModel" required  pattern="^[\S]+$" [minlength]="4"
+                    <input type="{{ showPassword ? 'text' : 'Password' }}" id="Password" (input)="onInputChange($event)" name="Password" class="form-control" ngModel #Password="ngModel" required  pattern="^[\S]+$" [minlength]="4"
                       id="form2Example22" class="form-control" placeholder="Please Enter Password" [ngClass]="{error: Password.touched && Password.invalid}">
+                      
+                      <span  *ngIf="inputValue.length > 0" id="eye"  class="password-toggle" (click)="togglePasswordVisibility()"><i class="{{ showPassword ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i></span>
                       <div *ngIf="Password.errors && Password.touched ">
                         <small class="text-danger" *ngIf="Password.errors['required']">password is required</small>
                         <small class="text-danger" *ngIf="Password.errors['minlength']">minimum 4 charaters required</small>

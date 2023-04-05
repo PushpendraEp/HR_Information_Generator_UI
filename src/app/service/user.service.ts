@@ -55,7 +55,7 @@ export class UserService {
 
   //  @ kirti soni ( 9/03/23 ) api integration for getting table data based on year and monty
 
-  public getmonthyeardata(year: string, month: string): Observable<any[]> {
+  public getmonthyeardata(year: string, month: number): Observable<any[]> {
     const selectedYear = year;
     const selectedMonth = month;
     const url = `${environment.URL}/getEmployeeData?month=${selectedMonth}&year=${selectedYear}`;

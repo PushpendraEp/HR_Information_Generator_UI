@@ -14,6 +14,10 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModuleModule } from '../common-module/common-module.module';
+import { DatePipe } from '@angular/common';
+
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +37,9 @@ import { CommonModuleModule } from '../common-module/common-module.module';
     NgxPaginationModule,
     Ng2FilterPipeModule,
     MatDialogModule,
-    CommonModuleModule
+
+    CommonModuleModule,
+    DatePipe
   ]
 })
 export class DashboardModule { }

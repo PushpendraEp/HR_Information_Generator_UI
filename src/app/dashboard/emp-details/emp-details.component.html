@@ -32,15 +32,24 @@
                 </div>
                 <div class="table-responsive " style="position: relative; height: auto">
                   <span *ngIf="!showLoader">
+                 
+                    
+
                   <table class="table table-striped mb-0 text-center" *ngIf="this.res">
                     <thead class="bg-dark">
+                    
                       <tr>
-                        <th scope="col" *ngFor="let i of header ">{{i}}</th>
+                        <th scope="col" *ngFor="let i of header">{{i}}<br>
+                   
+                          <input  type="text"  #search (keyup)="filterData(search.value, i)" placeholder="{{ i }}">
+                      
+                        </th>
                         <th>Download paySlip</th>
 
                       </tr>
                     </thead>
                     <tbody *ngIf="res && res.length > 0">
+                   
 
                       <tr
                         *ngFor="let value of res | filter:searchQuery |paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index;">
@@ -57,7 +66,7 @@
                         <td>{{value.PF}}</td>
                         <td>{{value.Others}}</td>
                         <td>{{value.extras}}</td>
-                        <td>{{value.month}}</td>
+                        <td>{{ monthToString(value.month) }}</td>
                         <td>{{value.year}}</td>
                         <td>
                           <button (click)="download(value, i)" class="btn text-white"
@@ -82,10 +91,18 @@
                     <span class="sr-only">Loading...</span>
                   </div>
                 </div>
+                
                   <!-- @ kirti soni ( 10/03/23 )  get data using pagination-->
-                  <pagination-controls *ngIf="this.res" (pageChange)="page=$event"></pagination-controls>
+    
+
+               
 
                 </div>
+                <pagination-controls  (pageChange)="page=$event"></pagination-controls>
+              
+
+
+
               </div>
             </div>
           </div>

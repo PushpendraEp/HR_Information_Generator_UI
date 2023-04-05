@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+// import { MatInput, MatInputModule } from '@angular/material/input';
+// import { MatTableDataSource } from '@angular/material/table'
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { DialogService } from 'src/app/service/dialog.service';
 import { UserService } from 'src/app/service/user.service';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-emp-details',
   templateUrl: './emp-details.component.html',
-  styleUrls: ['./emp-details.component.css']
+  styleUrls: ['./emp-details.component.css'],
+  providers: [DatePipe],
 
 })
 
@@ -18,19 +23,49 @@ export class EmpDetailsComponent {
   searchtext: any;
   itemsPerPage = 10;
   page = 1;
+ 
   // <!-- @ kirti soni ( 7/03/23 ) function for year and month selecter   -->
   constructor(private user: UserService, private dialogService: DialogService) { }
   searchQuery: any
-
+  searchText:any='';
   year: string | any;
-  month: string | any;
+  month: number | any;
   monthyear: any
   splitmonthyear: any
+  header: string[] |any| undefined
   selectedOption: string = 'month';
   yearList = [2020, 2021, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
   currentYear: any
   yeardata: any
   res: any
+
+  monthToString(month: number) {
+    const date = new Date(Date.UTC(2023, month - 1, 1));
+    return this.datePipe.transform(date, 'MMMM');
+  }
+ 
+  filterData(search: any, column: any) {
+  
+    console.log(search)
+    if (!search) {
+      search=''
+    } 
+
+      this.res = this.res.filter((row :any)=>{
+        // const date = new Date(Date.UTC(2023, row.month - 1, 1));
+        // row.month= this.datePipe.transform(date, 'MMMM');
+      //  row.month=this.monthToString(row.month)
+      console.log(row[column])
+       return row[column].toLowerCase().match(search.toLowerCase())}
+
+      );
+    }
+  
+  
+
+  
+  
+  datePipe = new DatePipe('en-US');
 
   ngOnInit() {
     const currentDate = new Date();
@@ -43,8 +78,10 @@ export class EmpDetailsComponent {
         return of(null);
       })
     ).subscribe((data: any) => {
+
       if (data && data.status) {
         this.res = data.results
+     
         if (this.res && this.res.length > 1) {
           this.header = Object.keys(this.res[0])
         }
@@ -99,7 +136,7 @@ export class EmpDetailsComponent {
   }
 
   // <!-- @ kirti soni ( 9/03/23 )  get employee data from api bbased on year-->
-  header: string[] | undefined
+
   selectyear(data: any) {
     this.yeardata = data.target.value
     // console.warn(this.yeardata)
