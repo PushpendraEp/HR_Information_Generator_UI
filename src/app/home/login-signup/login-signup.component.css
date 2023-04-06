@@ -2,16 +2,17 @@
 .form-control {
   border-radius: 30px;
 }
-.row input:focus {
-  border-color: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+/* .row input:focus {
+ 
   box-shadow: inset 0px 0px 2px 2px #b74600;
-}
+} */
 .row input::placeholder {
   color: #0a0a09;
 }
 .btn{
   width: 30%;
  
+
 }
 .error{
  border-color: red;
@@ -23,4 +24,12 @@
   .gradient-custom-2 {
     border-radius: 30px;
   }
+}
+.password-toggle {
+  position: absolute;
+
+  padding-left: 73%;
+  padding-bottom: 6%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

@@ -12,6 +12,7 @@ import { DialogService } from 'src/app/service/dialog.service'
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent {
+  showPassword = false;
   loginLoader: boolean = false;
   decodetoken: any;
   loginError: String | undefined;
@@ -21,12 +22,21 @@ export class LoginSignupComponent {
       this.route.navigate(['dashboard'])
     }
   }
+  togglePasswordVisibility() {
+  
+    this.showPassword = !this.showPassword;
+  }
+  inputValue = '';
 
+  onInputChange(event: any) {
+    this.inputValue = event.target.value;
+  }
   // <!-- @ kirti ( 17/02/23 ) Template Driven login form and reset value after submission--->
   //<!-- @ Ravi ( 28/02/23 ) login api integration -->
   //<!-- @ kirti ( 28/02/23 ) login api integration and show error message-->
   userLogin(data: any) {
     this.loginLoader = true;
+    
     // console.log(data)
     this.userService.login(data).pipe(
       catchError(error => {

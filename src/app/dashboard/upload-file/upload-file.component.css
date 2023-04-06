@@ -27,14 +27,14 @@ width: 60%;
   .gradient-custom-2 {
     border-radius: 50px;
     padding: 15px;
- background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135));
+ /* background: linear-gradient(to right, rgb(54, 222, 231), rgb(71, 8, 135)); */
   }
   .form-control {
     border-radius: 30px;
 
   }
   .row input:focus {
-    background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162));
+    /* background: linear-gradient(to right, rgb(102, 126, 234), rgb(118, 75, 162)); */
     box-shadow: inset 0px 0px 2px 2px #9b68da;
   }
   .row input::placeholder {
