@@ -14,7 +14,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModuleModule } from '../common-module/common-module.module';
-import { DatePipe } from '@angular/common';
+
 
 
 
@@ -39,7 +39,14 @@ import { DatePipe } from '@angular/common';
     MatDialogModule,
 
     CommonModuleModule,
-    DatePipe
+
   ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+
+
+
+
+
+
+ }

@@ -1,11 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-// import { MatInput, MatInputModule } from '@angular/material/input';
-// import { MatTableDataSource } from '@angular/material/table'
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { fromEvent, of } from 'rxjs';
+import { catchError, debounce, debounceTime } from 'rxjs/operators';
 import { DialogService } from 'src/app/service/dialog.service';
 import { UserService } from 'src/app/service/user.service';
-import { DatePipe } from '@angular/common';
+
 import { CommonService } from 'src/app/service/common.service';
 
 
@@ -13,7 +11,7 @@ import { CommonService } from 'src/app/service/common.service';
   selector: 'app-emp-details',
   templateUrl: './emp-details.component.html',
   styleUrls: ['./emp-details.component.css'],
-  providers: [DatePipe],
+
 
 })
 
@@ -26,9 +24,13 @@ export class EmpDetailsComponent {
   page = 1;
   searchFilterColumns: string[] = [];
   searchFilterValues: string[] = [];
+  
 
   // <!-- @ kirti soni ( 7/03/23 ) function for year and month selecter   -->
-  constructor(private user: UserService, private dialogService: DialogService, private commonService: CommonService) { }
+  constructor(private user: UserService, private dialogService: DialogService, private commonService: CommonService) {  
+}
+
+
   searchQuery: any
   searchText: any = '';
   year: string | any;
@@ -42,6 +44,9 @@ export class EmpDetailsComponent {
   yeardata: any
   res: any;
   resTableDataCopy: any;
+  s:any;
+  c:any;
+
 
   /*
 
@@ -51,11 +56,14 @@ export class EmpDetailsComponent {
     expected_outcome - it will filter according to search string
 
   */
+   
+ timer:any
 
-  filterData(search: any, column: any) {
-    setTimeout(() => {
-      
-
+  filterData(search: any, column: any) : void {
+ 
+    if(this.timer)  clearTimeout(this.timer);
+     // Clear the previous timer if there is any
+    this.timer = setTimeout(() => { 
     let isColumExists = this.searchFilterColumns.includes(column);
     
 
@@ -97,8 +105,8 @@ export class EmpDetailsComponent {
 
       }
       shouldNotPush = 0;
-    }
-  }, 2000);
+    }  }, 2000);
+  
 
   }
 
@@ -249,4 +257,18 @@ export class EmpDetailsComponent {
 
   //   });
   // }
-}
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
