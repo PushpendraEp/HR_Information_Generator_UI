@@ -43,11 +43,6 @@ export class EmpDetailsComponent {
   res: any;
   resTableDataCopy: any;
 
-  // monthToString(month: number) {
-  //   const date = new Date(Date.UTC(2023, month - 1, 1));
-  //   return this.datePipe.transform(date, 'MMMM');
-  // }
-
   /*
 
     @ Kirti ( 05/04/23 )
@@ -58,42 +53,54 @@ export class EmpDetailsComponent {
   */
 
   filterData(search: any, column: any) {
+    setTimeout(() => {
+      
+
     let isColumExists = this.searchFilterColumns.includes(column);
+    
 
     if (isColumExists) { // ( 05/04/12 ) If column exists then we will not push it and also update column value
       let indexOfCurrentCol = this.searchFilterColumns.findIndex(element => element == column);
+
       this.searchFilterValues[indexOfCurrentCol] = search;
     }
     else {   // ( 05/04/12 ) If column exists then we will push it and also push column value in ${searchFilterValues}
       this.searchFilterColumns.push(column);
       this.searchFilterValues.push(search);
+ 
     }
 
     this.res = [];
     let shouldNotPush: number = 0;
     for (let resIndex = 0; resIndex < this.resTableDataCopy.length; resIndex++) {
       for (let searchColumnIndex = 0; searchColumnIndex < this.searchFilterColumns.length; searchColumnIndex++) { // ( 05/04/23 ) Will search each and every column with key
+    
         let searchString = this.resTableDataCopy[resIndex][this.searchFilterColumns[searchColumnIndex]];
-        if(this.searchFilterColumns[searchColumnIndex] == "emp_id") {
+        console.log(searchColumnIndex)
+
+       
+        if (this.searchFilterColumns[searchColumnIndex] == "emp_id") {
+          console.log(this.searchFilterColumns )
+       
           searchString = String(this.resTableDataCopy[resIndex][this.searchFilterColumns[searchColumnIndex]]);
         }
         let isValueExists = searchString.toUpperCase().indexOf(this.searchFilterValues[searchColumnIndex].toUpperCase()) > -1;
+  
+     
         if (!isValueExists) {
           shouldNotPush++;
         }
       }
       if (shouldNotPush == 0) {
+     
         this.res.push(this.resTableDataCopy[resIndex]);
+
       }
       shouldNotPush = 0;
     }
+  }, 2000);
 
   }
-
-
-
-
-  datePipe = new DatePipe('en-US');
 
   ngOnInit() {
     const currentDate = new Date();
@@ -155,6 +162,7 @@ export class EmpDetailsComponent {
           this.showLoader = false;
           // console.warn(result);
           this.res = result.results;
+          this.res = this.commonService.changeMonthType(this.res, 'number to month');
           this.resTableDataCopy = this.res;
           if (this.res && this.res.length > 1) {
             this.header = Object.keys(this.res[0])
@@ -188,6 +196,7 @@ export class EmpDetailsComponent {
           if (data && data.status) {
             this.showLoader = false;
             this.res = data.results;
+            this.res = this.commonService.changeMonthType(this.res, 'number to month');
             this.resTableDataCopy = this.res;
             if (this.res && this.res.length > 1) {
               this.header = Object.keys(this.res[0])
