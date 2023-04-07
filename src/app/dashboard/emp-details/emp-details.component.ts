@@ -221,8 +221,11 @@ export class EmpDetailsComponent {
 
   // <!-- @ kirti soni ( 7/03/23 ) generate payslip   -->
 
-  download(data: string, i: number) {
+  download(data: any, i: number) {
     this.loaderArray[i] = true;
+    data = [data];
+    this.commonService.switch_case_for_change_month_to_number_type(data, 0);
+    data = data[0];
     this.user.downloadfile(data).pipe(
       catchError(error => {
         console.log(error.error.message);
