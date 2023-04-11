@@ -42,7 +42,9 @@
                     <input type="{{ showPassword ? 'text' : 'Password' }}" id="Password" (input)="onInputChange($event)" name="Password" class="form-control" ngModel #Password="ngModel" required  pattern="^[\S]+$" [minlength]="4"
                       id="form2Example22" class="form-control" placeholder="Please Enter Password" [ngClass]="{error: Password.touched && Password.invalid}">
                       
-                      <span  *ngIf="inputValue.length > 0" id="eye"  class="password-toggle" (click)="togglePasswordVisibility()"><i class="{{ showPassword ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i></span>
+                      <button *ngIf="inputValue.length > 0" type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+                        <i class="{{ showPassword ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i>
+                      </button>
                       <div *ngIf="Password.errors && Password.touched ">
                         <small class="text-danger" *ngIf="Password.errors['required']">password is required</small>
                         <small class="text-danger" *ngIf="Password.errors['minlength']">minimum 4 charaters required</small>

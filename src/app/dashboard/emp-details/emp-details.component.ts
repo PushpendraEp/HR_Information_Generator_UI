@@ -16,7 +16,6 @@ import { CommonService } from 'src/app/service/common.service';
 })
 
 export class EmpDetailsComponent {
-
   showLoader: boolean = false;
   loaderArray: any = [];
   searchtext: any;
@@ -44,17 +43,14 @@ export class EmpDetailsComponent {
   yeardata: any
   res: any;
   resTableDataCopy: any;
-  s:any;
-  c:any;
+ 
 
 
   /*
-
     @ Kirti ( 05/04/23 )
     Function Name - filterData
     req_param - search string, column name
     expected_outcome - it will filter according to search string
-
   */
    
  timer:any
@@ -84,17 +80,16 @@ export class EmpDetailsComponent {
       for (let searchColumnIndex = 0; searchColumnIndex < this.searchFilterColumns.length; searchColumnIndex++) { // ( 05/04/23 ) Will search each and every column with key
     
         let searchString = this.resTableDataCopy[resIndex][this.searchFilterColumns[searchColumnIndex]];
-        console.log(searchColumnIndex)
+   
 
        
         if (this.searchFilterColumns[searchColumnIndex] == "emp_id") {
-          console.log(this.searchFilterColumns )
+      
        
           searchString = String(this.resTableDataCopy[resIndex][this.searchFilterColumns[searchColumnIndex]]);
         }
         let isValueExists = searchString.toUpperCase().indexOf(this.searchFilterValues[searchColumnIndex].toUpperCase()) > -1;
-  
-     
+
         if (!isValueExists) {
           shouldNotPush++;
         }
@@ -106,6 +101,7 @@ export class EmpDetailsComponent {
       }
       shouldNotPush = 0;
     }  }, 2000);
+
   
 
   }
@@ -129,6 +125,7 @@ export class EmpDetailsComponent {
         this.resTableDataCopy = this.res;
         if (this.res && this.res.length > 1) {
           this.header = Object.keys(this.res[0]);
+          console.log(this.header)
         }
         this.addLoaderData();
       }
@@ -191,7 +188,7 @@ export class EmpDetailsComponent {
     // console.warn(this.yeardata)
     this.showLoader = true;
     this.user.getData(this.yeardata).pipe(
-      catchError(error => {
+      catchError(error =>{
         this.showLoader = false;
         this.res = [];
         this.resTableDataCopy = [];
@@ -204,10 +201,11 @@ export class EmpDetailsComponent {
           if (data && data.status) {
             this.showLoader = false;
             this.res = data.results;
-            this.res = this.commonService.changeMonthType(this.res, 'number to month');
+            this.res = this.commonService.changeMonthType(this.res,'number to month');
             this.resTableDataCopy = this.res;
             if (this.res && this.res.length > 1) {
               this.header = Object.keys(this.res[0])
+             
             }
             this.addLoaderData();
             // console.log(this.res)
@@ -221,8 +219,12 @@ export class EmpDetailsComponent {
 
   // <!-- @ kirti soni ( 7/03/23 ) generate payslip   -->
 
-  download(data: string, i: number) {
+  download(data1: any, i: number) {
     this.loaderArray[i] = true;
+    let data:any = JSON.parse(JSON.stringify(data1));
+    data=[data]
+    this.commonService.switch_case_for_change_month_to_number_type(data, 0);
+    data = data[0];
     this.user.downloadfile(data).pipe(
       catchError(error => {
         console.log(error.error.message);
@@ -234,6 +236,7 @@ export class EmpDetailsComponent {
         const title = 'Download Confirmation';
         this.dialogService.open(message, title).subscribe(result => {
           if (result) {
+            
             const blob = new Blob([data], { type: 'application/pdf' });
             const url = window.URL.createObjectURL(blob);
             window.open(url);

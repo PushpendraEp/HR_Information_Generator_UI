@@ -25,11 +25,16 @@
     border-radius: 30px;
   }
 }
+.form-outline {
+  position: relative;
+}
+
 .password-toggle {
   position: absolute;
-
-  padding-left: 73%;
-  padding-bottom: 6%;
+  top: 50%;
+  right: 10px;
   transform: translateY(-50%);
+  border: none;
+  background: transparent;
   cursor: pointer;
 }
