@@ -3,17 +3,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   canActivate() {
     throw new Error('Method not implemented.');
   }
 
 
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private route: Router,private common:CommonService) { }
 
   //<!-- @ Ravi ( 28/02/23 ) login api integration -->
   /* @ kirti soni ( 9/03/23 ) table data api integration by year */
@@ -41,6 +43,7 @@ export class UserService {
     const selectedId = data.emp_id
     const selectedYear = data.year
     const selectedMonth = data.month
+  
     return this.http.get(`${environment.URL}/payslip?emp_id=${selectedId}&month=${selectedMonth}&year=${selectedYear}`, { responseType: 'blob' })
   }
 
